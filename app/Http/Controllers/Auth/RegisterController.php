@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Persona;
+use App\Rol;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -49,8 +57,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'nombres' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
+            'correo_envio' => 'required|string|email|max:255|unique:personas',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -63,10 +72,45 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $error = null;
+        DB::beginTransaction();
+        try {
+
+            $registrado = Rol::where('nombre', "Registrado")->first();
+            $persona = new Persona();
+            $persona->nombres = $data['nombres'];
+            $persona->apellidos = $data['apellidos'];
+            $persona->correo_envio = $data['correo_envio'];
+
+            $user = new User();
+            $user->correo = $data['correo_envio'];
+            $user->password = bcrypt($data['password']);
+
+            $persona = $registrado->persona()->save($persona);
+            $user = $persona->user()->save($user);
+
+            DB::commit();
+            return $user;
+        } catch (\Exception $e) {
+            $success = false;
+            DB::rollback();
+            dd("Error",$e->getMessage(),"Rollback realizado!");
+        }
+
+
+        // error aqui
+        return "Ocurrio un error al registrar";
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        // $this->create($request->all());
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+        return $this->registered($request, $user) ?: redirect($this->redirectPath());
+
     }
 }
