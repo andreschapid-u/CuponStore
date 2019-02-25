@@ -19,6 +19,11 @@ class CreateEmpresasTable extends Migration
             $table->unsignedInteger('nit')->unique();
             $table->text('imagen');
             $table->text('imagen_p');
+
+            // La persona encargada de redimir los cupones
+            $table->unsignedInteger('persona_id');
+            $table->foreign('persona_id')->references('id')->on('personas');
+
             $table->timestamps();
         });
     }

@@ -23,8 +23,13 @@ class CreateCuponesTable extends Migration
             $table->unsignedDecimal('precio',10,2);
             $table->unsignedDecimal('precio_base',10,2);
 
+            // El cupon esta relacionado a un producto
             $table->unsignedInteger('producto_id');
             $table->foreign('producto_id')->references('id')->on('productos');
+
+            // La empresa a la que pertenece el cupon
+            $table->unsignedInteger('empresa_id');
+            $table->foreign('empresa_id')->references('id')->on('empresas');
 
             $table->timestamps();
         });
