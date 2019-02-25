@@ -1,4 +1,6 @@
-<p align="center" ><img width="200px" src="public/svg/logo.svg"></p>
+
+![alt](public/svg/logo.svg)
+
 
 
 <!-- ## CUPON STORE -->
