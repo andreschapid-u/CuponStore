@@ -1,5 +1,5 @@
 
-![alt](public\img\android-icon-192x192.png)
+![alt](public/img/android-icon-192x192.png)
 
 
 
