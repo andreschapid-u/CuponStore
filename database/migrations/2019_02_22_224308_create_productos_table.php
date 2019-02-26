@@ -18,8 +18,8 @@ class CreateProductosTable extends Migration
             $table->string('nombre')->unique();
             $table->text('descripcion')->nullable();
             $table->string('imagen');
-            $table->string('imagen_m');
-            $table->string('imagen_p');
+            $table->string('imagen_m')->nullable();
+            $table->string('imagen_p')->nullable();
 
             $table->unsignedInteger('marca_id');
             $table->foreign('marca_id')->references('id')->on('marcas');
