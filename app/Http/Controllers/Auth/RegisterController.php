@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Persona;
-use App\Rol;
+use App\Person;
+use App\Role;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,7 +59,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'nombres' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
-            'correo_envio' => 'required|string|email|max:255|unique:personas|unique:usuarios',
+            'correo_envio' => 'required|string|email|max:255|unique:persons,shipping_email|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -76,18 +76,18 @@ class RegisterController extends Controller
         DB::beginTransaction();
         try {
 
-            $registrado = Rol::where('nombre', "Registrado")->first();
-            $persona = new Persona();
-            $persona->nombres = $data['nombres'];
-            $persona->apellidos = $data['apellidos'];
-            $persona->correo_envio = $data['correo_envio'];
+            $registrado = Role::where('name', "Registrado")->first();
+            $person = new Person();
+            $person->first_name = $data['nombres'];
+            $person->last_name = $data['apellidos'];
+            $person->shipping_email = $data['correo_envio'];
 
             $user = new User();
-            $user->correo = $data['correo_envio'];
+            $user->email = $data['correo_envio'];
             $user->password = bcrypt($data['password']);
 
-            $persona = $registrado->persona()->save($persona);
-            $user = $persona->user()->save($user);
+            $person = $registrado->person()->save($person);
+            $user = $person->user()->save($user);
 
             DB::commit();
             return $user;

@@ -49,7 +49,7 @@ class LoginController extends Controller
      */
     public function authenticate(Request $request)
     {
-        $credentials = $request->only('correo', 'password');
+        $credentials = $request->only($this->username(), 'password');
         if (Auth::attempt($credentials)) {
             // Authentication passed...
             return redirect()->intended('dashboard');
@@ -58,7 +58,7 @@ class LoginController extends Controller
 
     public function username()
     {
-        return 'correo';
+        return 'email';
     }
 
      /**

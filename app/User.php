@@ -10,14 +10,14 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $table='usuarios';
+    protected $table='users';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'correo', 'password'
+        'email', 'password'
     ];
 
     /**
@@ -29,8 +29,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function persona()
+    public function person()
     {
-        return $this->belongsTo(Persona::class, 'persona_id', 'id');
+        return $this->belongsTo(Person::class, 'person_id', 'id');
     }
 }
