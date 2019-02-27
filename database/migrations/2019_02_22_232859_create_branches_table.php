@@ -16,12 +16,14 @@ class CreateBranchesTable extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->increments('id');
             $table->string('address');
-            $table->string('telefono', 12)->unique();
+            $table->string('telephone', 12)->unique();
 
             $table->unsignedInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies');
             $table->unsignedInteger('city_id');
             $table->foreign('city_id')->references('id')->on('cities');
+            $table->unsignedInteger('person_id');
+            $table->foreign('person_id')->references('id')->on('persons');
 
             $table->timestamps();
         });

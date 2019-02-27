@@ -22,7 +22,15 @@ class City extends Model
      */
     public function department()
     {
-        return $this->belongsTo(Departamento::class, 'department_id', 'id');
+        return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
+
+    /**
+     * Sucursales que hay en esa ciudad
+     */
+    public function branches()
+    {
+        return $this->hasMany(Branch::class, 'city_id', 'id');
     }
 
     // TODO: Terminar funcionalidad

@@ -31,9 +31,9 @@ class Company extends Model
     /**
      * Función que retorna las sucursales de la empresa
      */
-    public function purchases()
+    public function branches()
     {
-        return $this->hasMany(Purchases::class, 'company_id', 'id');
+        return $this->hasMany(Branch::class, 'company_id', 'id');
     }
 
     // TODO: Terminar funcionalidad

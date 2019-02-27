@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +17,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/d/{dep}', function ($dep)
+{
+
+    $dep = \App\Department::where('name',$dep)->firstOrFail();
+    // dd($dep->cities());
+    foreach ($dep->cities as $c) {
+        echo $c->name . '<br>';
+    }
+});
