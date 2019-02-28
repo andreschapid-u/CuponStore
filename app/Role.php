@@ -18,6 +18,6 @@ class Role extends Model
     ];
     public function person()
     {
-        return $this->hasOne(Person::class, 'role_id', 'id');
+        return $this->hasMany(Person::class, 'role_id', 'id');
     }
 }

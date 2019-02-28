@@ -12,10 +12,9 @@ class Company extends Model
 
 
     /**
-     * La persona encargada por la empresa para realizar la redención
-     * Recibe el código del cliente y verifica el estado del mismo
+     * Jefe de  la empresa
      */
-    public function checker()
+    public function boss()
     {
         return $this->belongsTo(Person::class, 'person_id', 'id');
     }
@@ -23,7 +22,7 @@ class Company extends Model
     /**
      * Función que retorna los cupones que le pertenecen a la empresa
      */
-    public function coupones()
+    public function coupons()
     {
         return $this->hasMany(Coupon::class, 'company_id', 'id');
     }

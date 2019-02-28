@@ -10,7 +10,7 @@ class Coupon extends Model
 
     protected $table = 'coupons';
 
-    protected $fillable = ['stock', 'discount', 'state', 'expiration'];
+    protected $fillable = ['stock', 'discount', 'state', 'expiration', 'price', 'base_price'];
 
     // TODO: Crear funcionalidad
 

@@ -24,4 +24,20 @@ class Branch extends Model
     {
         return $this->belongsTo(Company::class, 'company_id', 'id');
     }
+
+    /**
+     * La persona encargada por la empresa para realizar la redención
+     * Recibe el código del cliente y verifica el estado del mismo
+     */
+    public function checker()
+    {
+        return $this->belongsTo(Person::class, 'person_id', 'id');
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->withTimestamps();
+        // ->using(BranchProduct::class);
+    }
+
 }

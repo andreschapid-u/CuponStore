@@ -13,7 +13,7 @@ class CreateBranchesProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('branches_products', function (Blueprint $table) {
+        Schema::create('branch_product', function (Blueprint $table) {
             $table->increments('id');
 
             $table->unsignedInteger('branch_id');
@@ -32,6 +32,7 @@ class CreateBranchesProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('branches_products');
+        Schema::dropIfExists('branch_product');
+
     }
 }

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Faker\Provider\ar_JO\Company;
 
 class Person extends Authenticatable
 {
@@ -28,6 +29,24 @@ class Person extends Authenticatable
         return $this->belongsTo(Rol::class, 'role_id', 'id');
     }
 
+    public function companies()
+    {
+        return $this->hasMany(Company::class, 'product_id', 'id');
+    }
+
+    public function branches()
+    {
+        return $this->hasMany(Branch::class, 'product_id', 'id');
+    }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class, 'product_id', 'id');
+    }
+
+
     // TODO: Terminar funcionalidad
+    // TODO: Relacion com empresa
+    // TODO: Relacion com sucursales
 
 }
