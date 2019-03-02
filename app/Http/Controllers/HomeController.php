@@ -15,9 +15,9 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
 
-        $this->middleware('log')->only('index');
+        // $this->middleware('log')->only('index');
 
-        $this->middleware('subscribed')->except('store');
+        // $this->middleware('subscribed')->except('store');
     }
 
     /**

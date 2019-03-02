@@ -18,5 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('marcas', function(){
-    return datatables()->eloquent(\App\Brand::query())->toJson();
+    return datatables()
+    ->eloquent(\App\Brand::query())
+    ->addColumn('options', 'marcas.partials.actions')
+    ->rawColumns(['options'])
+    ->toJson();
 });

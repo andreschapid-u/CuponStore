@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -26,13 +25,34 @@ const app = new Vue({
 // require( 'datatables.net-bs4' )();
 
 require('jquery');
-require('datatables.net' );
-require('datatables.net-bs4' );
+require('datatables.net');
+require('datatables.net-bs4');
 // require('datatables.net-responsive-bs4' );
 
 // TOASTR
 window.toastr = require('toastr');
 
+
+
+//Validar campos requeridos
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict';
+    window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
 // COnfiguracion toastr
 toastr.options = {
     "closeButton": true,
@@ -49,10 +69,8 @@ toastr.options = {
     "showEasing": "swing",
     "hideEasing": "linear",
     "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-  }
+    "hideMethod": "fadeOut"};
 
 // Ejemplo
+
 // toastr.info("HOLA");
-
-

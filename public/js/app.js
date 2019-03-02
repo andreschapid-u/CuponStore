@@ -29238,7 +29238,6 @@ module.exports = __webpack_require__(48);
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -29258,7 +29257,7 @@ window.Vue = __webpack_require__(37);
 Vue.component('example-component', __webpack_require__(41));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
 });
 
 //DATATABLES
@@ -29273,28 +29272,47 @@ __webpack_require__(45);
 // TOASTR
 window.toastr = __webpack_require__(46);
 
+//Validar campos requeridos
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict';
+
+    window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
 // COnfiguracion toastr
 toastr.options = {
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": true,
-  "progressBar": true,
-  "positionClass": "toast-top-right",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": true,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut" };
 
-  // Ejemplo
-  // toastr.info("HOLA");
+// Ejemplo
 
-};
+// toastr.info("HOLA");
 
 /***/ }),
 /* 14 */
