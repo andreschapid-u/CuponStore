@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Http\Resources\Json\Resource;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +19,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/d/{dep}', function ($dep)
-{
+Route::get('/d/{dep}', function ($dep) {
 
-    $dep = \App\Department::where('name',$dep)->firstOrFail();
+    $dep = \App\Department::where('name', $dep)->firstOrFail();
     // dd($dep->cities());
     foreach ($dep->cities as $c) {
         echo $c->name . '<br>';
     }
 });
+
+Route::resources([
+    'categorias' => 'CategoryController',
+    'marcas' => 'BrandController',
+    'productos' => 'ProductController',
+    'tipos-pago' => 'PaymentMethodController',
+    'cupones' => 'CouponController',
+]);

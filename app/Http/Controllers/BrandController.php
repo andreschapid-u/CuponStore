@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Brand;
 use Illuminate\Http\Request;
+use Session;
 
 class BrandController extends Controller
 {
@@ -14,7 +15,10 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        // Session::flash('success', "Se ha guaradado correctamente.");
+
+        // return view('marcas.index')->with('marcas', Brand::all());
+        return view('marcas.index');
     }
 
     /**
@@ -35,7 +39,14 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:brands,name'
+        ]);
+
+        Brand::create($request->all());
+
+        Session::flash('success', "Se ha guaradado correctamente.");
+        return redirect()->back();
     }
 
     /**

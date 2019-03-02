@@ -20,3 +20,39 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+//DATATABLES
+// require( 'jquery' );
+// require( 'datatables.net-bs4' )();
+
+require('jquery');
+require('datatables.net' );
+require('datatables.net-bs4' );
+// require('datatables.net-responsive-bs4' );
+
+// TOASTR
+window.toastr = require('toastr');
+
+// COnfiguracion toastr
+toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": true,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+
+// Ejemplo
+// toastr.info("HOLA");
+
+

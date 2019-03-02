@@ -63,6 +63,9 @@
                 margin-bottom: 30px;
             }
         </style>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -92,5 +95,13 @@
                 </div>
             </div>
         </div>
+    <script src="{{ asset('js/app.js') }}"></script>
+    @if(!session()->has('success'))
+        <script> toastr.success("Hola");</script>
+        <script> toastr.info("Hola");</script>
+        <script> toastr.warning("Hola");</script>
+        <script> toastr.error("Hola");</script>
+    @endif
+    {{-- @include('partials.session-messages') --}}
     </body>
 </html>
