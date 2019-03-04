@@ -1,27 +1,27 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h3>Usuarios</h3>
+        <h3 class="title">Usuarios</h3>
 
-<a name="" id="" class="btn btn-primary" href="{{route('persons.create')}}" role="button">Registrar Usuario</a>
+        <a name="" id="" class="btn btn-primary" href="{{route('persons.create')}}" role="button">Registrar Usuario</a>
 
-    <div class="row">
-        <div class="col-sm-10 ">
-            <table class="table datatable table-striped table-bordered table-hover table-sm">
-                <thead class="thead-inverse">
-                    <tr>
-                        <th>ID</th>
-                        <th>NOMBRES</th>
-                        <th>APELLIDOS</th>
-                        <th>ROL</th>
-                        <th>CORREO</th>
-                        <th>CORREO ENVIO</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                </thead>
-            </table>
+        <div class="table-responsive">
+            <div class="col-sm-12 ">
+                <table class="table datatable table-striped table-bordered table-hover table-sm">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>ID</th>
+                            <th>NOMBRES</th>
+                            <th>APELLIDOS</th>
+                            <th >ROL</th>
+                            <th>CORREO</th>
+                            <th>CORREO ENVIO</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
-    </div>
 </div>
 @endsection
 
@@ -41,9 +41,9 @@
                     {data: "id"},
                     {data: "first_name"},
                     {data: "last_name"},
-                    {data: "shipping_email"},
                     {data: "role"},
                     {data: "email"},
+                    {data: "shipping_email"},
                     {data: "options"},
                 ]
             } );
@@ -63,9 +63,7 @@
 
 </script>
 @endsection
-
-
-{{--
+ {{--
 <div id="myModal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

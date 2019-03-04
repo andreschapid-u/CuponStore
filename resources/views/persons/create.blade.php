@@ -66,11 +66,7 @@
                         </div>
 
 
-                        @guest
-                        @else
-                        @if (Auth::user()->isAdmin())
-                        @endif
-                        @endif
+                        @if (Auth::check() && Auth::user()->isAdmin())
                         <div class="form-group row">
                             <label for="rol" class="col-md-4 col-form-label text-md-right">{{__('Role')}}</label>
                             <div class="col-md-6">
@@ -87,6 +83,8 @@
                                     </span> @endif
                             </div>
                         </div>
+                        @endif
+
 
 
                         <div class="form-group row mb-0">

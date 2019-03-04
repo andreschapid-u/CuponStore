@@ -66,7 +66,7 @@
                         </div>
 
 
-                        @if (Auth::user()->person->role->is('Administrador'))
+                        @if (Auth::check() && Auth::user()->isAdmin())
                         <div class="form-group row">
                             <label for="rol" class="col-md-4 col-form-label text-md-right">Tipo de usuario</label>
                             <div class="col-md-6">

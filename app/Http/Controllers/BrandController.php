@@ -50,7 +50,7 @@ class BrandController extends Controller
         if (!$validate->fails()) {
             Brand::create($request->all());
             Session::flash('success', "Se ha guaradado correctamente.");
-            return  view('brands.index');
+            return  redirect()->route('brands');
         } else {
             Session::flash('error', "No se pudo guardar la marca.");
             // return redirect('marcas.index');

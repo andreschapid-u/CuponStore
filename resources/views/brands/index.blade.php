@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h3>MARCAS</h3>
+    <h3 class="title">MARCAS</h3>
 
     <div class="row">
-        <div class="col-sm-4">
+
+        <div class="col-md-4">
 
             <form action="{{route('brands.store')}}" method="post" class="needs-validation" novalidate>
                 @csrf
@@ -29,18 +30,24 @@
                 </div>
             </form>
         </div>
-        <div class="offset-sm-1 col-sm-6 ">
-            <table class="table datatable table-striped table-bordered table-hover table-sm">
-                <thead class="thead-inverse">
-                    <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                </thead>
-            </table>
+
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <div class="col-sm-12">
+                    <table class="table datatable table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>ID</th>
+                                <th>NOMBRE</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
+
 </div>
 @endsection
 
@@ -78,9 +85,7 @@
 
 </script>
 @endsection
-
-
-{{--
+ {{--
 <div id="myModal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

@@ -2,5 +2,15 @@
 
 body{
     margin-top: 59px !important;
-    background-color: rgb(221, 221, 221) !important;
+    background-color: rgb(241, 241, 241) !important;
 }
+
+.navbar-laravel {
+    background-color: ghostwhite !important;
+    box-shadow: 2px 2px 5px rgb(52, 65, 241) !important;
+  }
+
+  .navbar-laravel > .logo{
+      width: 45px;
+      height: 45px;
+  }

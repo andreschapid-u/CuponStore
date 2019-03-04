@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use DB;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class RegisterController extends Controller
 {
@@ -110,6 +111,7 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
+        $request->session()->flash('success', "Ahora estas registrado!");
         return $this->registered($request, $user) ?: redirect($this->redirectPath());
 
     }

@@ -10,6 +10,7 @@ use App\Http\Requests\PersonStoreRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\PersonUpdateRequest;
 
 class PersonController extends Controller
 {
@@ -107,9 +108,8 @@ class PersonController extends Controller
     public function edit(Request $request,  $person)
     {
         return view('persons.edit')
-        ->with('person', Person::find($person))
-        ->with('roles', Role::all());
-
+            ->with('person', Person::find($person))
+            ->with('roles', Role::all());
     }
 
     /**
@@ -119,9 +119,15 @@ class PersonController extends Controller
      * @param  \App\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function update(PersonStoreRequest $request, Person $person)
+    public function update(PersonUpdateRequest $request, $id)
     {
-        //
+        $person = Person::find($id);
+        $person->first_name = $request['nombres'];
+        $person->last_name = $request['apellidos'];
+        $person->shipping_email = $request['correo_envio'];
+        $person->save();
+
+        return back()->with('success', "Se ha guaradado correctamente.");
     }
 
     /**

@@ -31,7 +31,7 @@ class PersonStoreRequest extends FormRequest
             'password' => 'required|string|min:6|confirmed',
         ];
 
-        if (Auth::user()->person->role->is('Administrador')) {
+        if (Auth::check() && Auth::user()->isAdmin()) {
             $rules = array_merge($rules,['rol' => 'required|exists:roles,id']);
         }
         return $rules;

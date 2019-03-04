@@ -32,14 +32,14 @@ Route::get('/d/{dep}', function ($dep) {
 });
 
 Route::group(['prefix' => 'marcas'], function () {
-    Route::get('/', 'BrandController@index')->name('brands.index');
+    Route::get('/', 'BrandController@index')->name('brands');
     Route::get('{id}/actualizar', 'BrandController@edit')->name('brands.edit');
 
     Route::post('registrar', 'BrandController@store')->name('brands.store');
     Route::post('actualizar', 'BrandController@update')->name('brands.update');
 });
 Route::group(['prefix' => 'categorias'], function () {
-    Route::get('/', 'CategoryController@index')->name('categorias.store');
+    Route::get('/', 'CategoryController@index')->name('categorias');
     Route::post('store', 'CategoryController@store')->name('categorias.store');
     Route::get('{id}/edit', 'CategoryController@edit')->name('categorias.edit');
     Route::post('update/{id}', 'CategoryController@update')->name('categorias.update');
