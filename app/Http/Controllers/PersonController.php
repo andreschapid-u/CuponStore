@@ -68,7 +68,7 @@ class PersonController extends Controller
             $user->email = $request['correo_envio'];
             $user->password = bcrypt($request['password']);
 
-            if (Auth::user()->person->role->is('Administrador')) {
+            if (Auth::user()->isAdmin()) {
                 $registrado = Role::find($request['rol']);
                 $person = $registrado->person()->save($person);
             } else {

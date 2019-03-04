@@ -16,7 +16,7 @@ class PublicistaMiddleware
     public function handle($request, Closure $next)
     {
         // dd(Auth::user()->person->role);
-        if(Auth::user()->person->role->is('Publicista')){
+        if(Auth::user()->isPublicista()){
             return $next($request);
         }
         return abort(404);

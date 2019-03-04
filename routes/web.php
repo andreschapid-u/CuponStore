@@ -47,8 +47,9 @@ Route::group(['prefix' => 'categorias'], function () {
 Route::group(['prefix' => 'personas'], function () {
     Route::get('/', 'PersonController@index')->name('persons');
     Route::get('registrar', 'PersonController@create')->name('persons.create');
-    Route::get('/getPersonsAll', 'PersonController@getPersonsAll')->name('persons.getPersonsAll');
+    Route::get('getPersonsAll', 'PersonController@getPersonsAll')->name('persons.getPersonsAll');
     Route::get('{id}/actualizar', 'PersonController@edit')->name('persons.edit');
+    Route::get('ver/{id}', 'PersonController@show')->name('persons.show');
 
     Route::post('guardar', 'PersonController@store')->name('persons.store');
     Route::post('acrualizar/{id}', 'PersonController@update')->name('persons.update');

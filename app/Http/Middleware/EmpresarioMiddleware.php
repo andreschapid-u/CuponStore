@@ -19,7 +19,7 @@ class EmpresarioMiddleware
     {
         // dd(Auth::user()->person->role);
         $role = Auth::user()->person->role;
-        if ($role->is('Empresario') || $role->is('Administrador')) {
+        if ($role->iEmpresario() || $role->isAdmin()) {
             return $next($request);
         }
         return abort(404);

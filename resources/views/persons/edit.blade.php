@@ -66,7 +66,8 @@
                         </div>
 
 
-                        @if (Auth::user()->person->role->is('Administrador'))
+
+                        {{-- @if (Auth::user()->isAdmin())
                         <div class="form-group row">
                             <label for="rol" class="col-md-4 col-form-label text-md-right">Tipo de usuario</label>
                             <div class="col-md-6">
@@ -84,7 +85,7 @@
                             </div>
                         </div>
 
-                        Soy Admin {{Auth::user()->person->role->name}} @else @endif
+                        Soy Admin {{Auth::user()->person->role->name}} @else @endif --}}
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

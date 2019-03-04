@@ -33,4 +33,21 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Person::class, 'person_id', 'id');
     }
+
+    public function isAdmin()
+    {
+        return $this->person->role->is('Administrador');
+    }
+    public function isEmpresario()
+    {
+        return $this->person->role->is('Empresario');
+    }
+    public function isChecker()
+    {
+        return $this->person->role->is('Checker');
+    }
+    public function isPublicista()
+    {
+        return $this->person->role->is('Publicista');
+    }
 }

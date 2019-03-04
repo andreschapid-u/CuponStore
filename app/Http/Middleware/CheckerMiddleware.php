@@ -15,7 +15,7 @@ class CheckerMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->person->role->is('Checker')){
+        if(Auth::user()->isChecker()){
             return $next($request);
         }
         return abort(404);

@@ -17,7 +17,7 @@ class AdministradorMiddleware
     public function handle($request, Closure $next)
     {
         // dd(Auth::user()->person->role);
-        if(Auth::user()->person->role->is('Administrador')){
+        if(Auth::user()->isAdmin()){
             return $next($request);
         }
         return abort(404);
