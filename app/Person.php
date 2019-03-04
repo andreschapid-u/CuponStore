@@ -26,7 +26,7 @@ class Person extends Authenticatable
     }
 
     public function role(){
-        return $this->belongsTo(Rol::class, 'role_id', 'id');
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
     public function companies()

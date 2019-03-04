@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Brand;
 use Illuminate\Http\Request;
 use Session;
+use Validator;
 
 class BrandController extends Controller
 {
+
+    public function __construct()
+    {
+        // $this->middleware('auth');
+        // $this->middleware('administrador');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,10 +22,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        // Session::flash('success', "Se ha guaradado correctamente.");
-
-        // return view('marcas.index')->with('marcas', Brand::all());
-        return view('marcas.index');
+        return view('brands.index');
     }
 
     /**
@@ -39,14 +43,19 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validate = Validator::make($request->all(), [
             'name' => 'required|unique:brands,name'
         ]);
 
-        Brand::create($request->all());
-
-        Session::flash('success', "Se ha guaradado correctamente.");
-        return redirect()->back();
+        if (!$validate->fails()) {
+            Brand::create($request->all());
+            Session::flash('success', "Se ha guaradado correctamente.");
+            return  view('brands.index');
+        } else {
+            Session::flash('error', "No se pudo guardar la marca.");
+            // return redirect('marcas.index');
+            return back()->withErrors($validate);
+        }
     }
 
     /**
@@ -66,9 +75,10 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit(Brand $brand, $id)
     {
-        //
+        $b = Brand::findOrFail($id);
+        return view('brands.edit')->with('brand', $b);
     }
 
     /**
@@ -78,9 +88,26 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, Brand $brand, $id)
     {
-        //
+        $b = Brand::findOrFail($id);
+
+        $validate = Validator::make($request->all(), [
+            'name' => 'required|unique:brands,name'
+        ]);
+
+        if ($validate->fails()) {
+            Session::flash('error', "No se pudo actualizar la marca.");
+            // return redirect('marcas.index');
+            return back()->withErrors($validate);
+        } else {
+            $b->name = $request['name'];
+            $b->update();
+            Session::flash('success', "Se ha guaradado correctamente.");
+            return  view('brands.index');
+        }
+
+        $b->update();
     }
 
     /**

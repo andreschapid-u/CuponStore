@@ -3,10 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Person;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\PersonStoreRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PersonController extends Controller
 {
+
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // $this->middleware('auth');
+        // $this->middleware('administrador');
+        // $this->middleware('empresario');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +34,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        return view('persons.index');
     }
 
     /**
@@ -24,7 +44,8 @@ class PersonController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('persons.create')->with('roles', Role::all());
     }
 
     /**
@@ -33,9 +54,37 @@ class PersonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PersonStoreRequest $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+
+            $person = new Person();
+            $person->first_name = $request['nombres'];
+            $person->last_name = $request['apellidos'];
+            $person->shipping_email = $request['correo_envio'];
+
+            $user = new User();
+            $user->email = $request['correo_envio'];
+            $user->password = bcrypt($request['password']);
+
+            if (Auth::user()->person->role->is('Administrador')) {
+                $registrado = Role::find($request['rol']);
+                $person = $registrado->person()->save($person);
+            } else {
+                $registrado = Role::where('name', 'Checker')->first();
+                $person = $registrado->person()->save($person);
+            }
+            $user = $person->user()->save($user);
+
+            DB::commit();
+            Session::flash('success', "Se ha guaradado correctamente.");
+            return redirect()->route('persons');
+        } catch (\Exception $e) {
+            $success = false;
+            DB::rollback();
+            dd("Error", $e->getMessage(), "Rollback realizado!");
+        }
     }
 
     /**
@@ -46,7 +95,7 @@ class PersonController extends Controller
      */
     public function show(Person $person)
     {
-        //
+        return view('persons.show');
     }
 
     /**
@@ -55,9 +104,12 @@ class PersonController extends Controller
      * @param  \App\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function edit(Person $person)
+    public function edit(Request $request,  $person)
     {
-        //
+        return view('persons.edit')
+        ->with('person', Person::find($person))
+        ->with('roles', Role::all());
+
     }
 
     /**
@@ -67,7 +119,7 @@ class PersonController extends Controller
      * @param  \App\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Person $person)
+    public function update(PersonStoreRequest $request, Person $person)
     {
         //
     }
@@ -81,5 +133,25 @@ class PersonController extends Controller
     public function destroy(Person $person)
     {
         //
+    }
+
+    public function getPersonsAll()
+    {
+
+        // $user = Auth::user()->person;
+        // $personQuery = \App\Person::query();
+        $personQuery = \App\Person::query();
+
+        return datatables()
+            ->eloquent($personQuery)
+            ->addColumn('role', function ($model) {
+                return $model->role->name;
+            })
+            ->addColumn('email', function ($model) {
+                return $model->user->email;
+            })
+            ->addColumn('options', 'persons.partials.actions')
+            ->rawColumns(['options'])
+            ->toJson();
     }
 }

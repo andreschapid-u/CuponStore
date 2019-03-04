@@ -20,4 +20,9 @@ class Role extends Model
     {
         return $this->hasMany(Person::class, 'role_id', 'id');
     }
+
+    public function is($role = null)
+    {
+        return $this->name == $role;
+    }
 }

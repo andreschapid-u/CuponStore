@@ -20,7 +20,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('marcas', function(){
     return datatables()
     ->eloquent(\App\Brand::query())
-    ->addColumn('options', 'marcas.partials.actions')
+    ->addColumn('options', 'brands.partials.actions')
     ->rawColumns(['options'])
     ->toJson();
+});
+Route::get('categorias', function(){
+    return datatables()
+    ->eloquent(\App\Category::query())
+    ->addColumn('options', 'categories.partials.actions')
+    ->rawColumns(['options'])
+    ->toJson();
+});
+
+
+Route::get('marcas/get/{id}', function($id){
+    return response(\App\Brand::find($id));
 });

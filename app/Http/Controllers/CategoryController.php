@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Session;
+use Validator;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('administrador');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('categories.index');
     }
 
     /**
@@ -35,7 +42,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'name' => 'required|unique:categories,name'
+        ]);
+
+
+        // $request->validate([
+        //     'name' => 'required|unique:brands,name'
+        // ]);
+
+        if (!$validate->fails()) {
+            Category::create($request->all());
+            Session::flash('success', "Se ha guaradado correctamente.");
+            return  redirect('categorias');
+        } else {
+            Session::flash('error', "No se pudo guardar la categoria.");
+            // return redirect('marcas.index');
+            return back()->withErrors($validate);
+        }
     }
 
     /**
@@ -55,9 +79,10 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category, $id)
     {
-        //
+        $c = Category::findOrFail($id);
+        return view('categories.edit')->with('category', $c);
     }
 
     /**
@@ -67,9 +92,25 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $c = Category::findOrFail($id);
+
+        $validate = Validator::make($request->all(), [
+            'name' => 'required|unique:categories,name'
+        ]);
+
+        if ($validate->fails()) {
+            Session::flash('error', "No se pudo actualizar la categoria.");
+            return back()->withErrors($validate);
+        } else {
+            $c->name = $request['name'];
+            $c->update();
+            Session::flash('success', "Se ha guaradado correctamente.");
+            return  redirect('categorias');
+
+            // return  redirect('categorias');
+        }
     }
 
     /**
