@@ -32,7 +32,7 @@
                         'copy', 'excel', 'pdf'
                     ],
                     "language": {
-                        "url": "Spanish.json"
+                        "url": "{{asset('Spanish.json')}}"
                     },
                     "serverSide" : true,
                         "ajax" : "{{route('api.products')}}" ,

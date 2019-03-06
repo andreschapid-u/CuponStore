@@ -47,7 +47,8 @@ class ProductController extends Controller
             $p = new Product();
             $p->name = $request["nombre"];
             $p->description = $request["descripcion"];
-            $p->image = asset($image_s);
+            // $p->image = asset($image_s);
+            $p->image = $image_s;
             $p->brand_id = $request["marca"];
             $p->category_id =  $request["categoria"];
             // dd($c);

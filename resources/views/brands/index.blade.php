@@ -1,11 +1,13 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h3 class="title">MARCAS</h3>
 
     <div class="row">
+        <div class="col-12 mx-auto">
+            <h3>MARCAS</h3>
+        </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-4">
 
             <form action="{{route('brands.store')}}" method="post" class="needs-validation" novalidate>
                 @csrf
@@ -33,7 +35,7 @@
             </form>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-sm-12 col-md-8">
             <div class="table-responsive">
                 <div class="col-sm-12 ">
                     <table class="table datatable table-striped table-bordered table-hover table-sm">
@@ -61,7 +63,7 @@
         $(document).ready(function(urlAjax, columnas) {
             $('.datatable').dataTable( {
                 "language": {
-                    "url": "Spanish.json"
+                    "url": "{{asset('Spanish.json')}}"
                 },
                 "serverSide" : true,
                     "ajax" : "api/marcas" ,

@@ -40,4 +40,9 @@ class Branch extends Model
         // ->using(BranchProduct::class);
     }
 
+    public function toString()
+    {
+        return $this->city->name.", ".$this->address;
+    }
+
 }

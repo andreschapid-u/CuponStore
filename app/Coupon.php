@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Faker\Provider\ar_JO\Company;
+use App\Company;
 
 class Coupon extends Model
 {
@@ -21,5 +21,10 @@ class Coupon extends Model
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+    public function status()
+    {
+        return $this->state ? "Activo" : "Inactivo";
     }
 }

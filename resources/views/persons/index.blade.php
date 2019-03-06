@@ -35,7 +35,7 @@
         $(document).ready(function(urlAjax, columnas) {
             $('.datatable').dataTable( {
                 "language": {
-                    "url": "Spanish.json"
+                    "url": "{{asset('Spanish.json')}}"
                 },
                 "serverSide" : true,
                     "ajax" : "{{route('persons.getPersonsAll')}}" ,

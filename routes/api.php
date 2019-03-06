@@ -82,3 +82,16 @@ Route::get('empresas/{id}/sucursales',function($id){
     })
     ->toJson();
 })->name("api.companies.branches");
+
+
+Route::get('productos/{id}/cupones',function($id){
+    return datatables()
+    ->eloquent(\App\Coupon::where("product_id", $id))
+    ->addColumn('company', function ($model) {
+        return $model->company->name;
+    })
+    ->addColumn('status', function ($model) {
+        return $model->status();
+    })
+    ->toJson();
+})->name("api.products.coupons");

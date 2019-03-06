@@ -4,7 +4,7 @@
     <h3>CATEGORIAS</h3>
 
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-12 col-md-4 col-lg-4">
 
             <form action="{{route('categorias.store')}}" method="post" class="needs-validation" novalidate>
                 @csrf
@@ -29,7 +29,7 @@
                 </div>
             </form>
         </div>
-        <div class="offset-sm-1 col-sm-6 ">
+        <div class="col-sm-12 col-md-8 col-lg-8 ">
             <div class="table-responsive">
                 <div class="col-sm-12 ">
                     <table class="table datatable table-striped table-bordered table-hover table-sm">
@@ -56,7 +56,7 @@
         $(document).ready(function(urlAjax, columnas) {
             $('.datatable').dataTable( {
                 "language": {
-                    "url": "Spanish.json"
+                    "url": "{{asset('Spanish.json')}}"
                 },
                 "serverSide" : true,
                 "processing":true,

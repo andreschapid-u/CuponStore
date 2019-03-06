@@ -29,7 +29,7 @@
                     <div class="form-group row">
                         <label for="logo" class="col-md-4 col-form-label text-md-right">Imagen</label>
                         <div class="col-md-6">
-                        <img clas="img-fluid card-img-top" src="{{asset($product->image)}}" >
+                        <img clas="img-fluid card-img-top" src="{{asset($product->image)}}" style="max-width: 300px;">
                         </div>
                     </div>
 
@@ -43,6 +43,30 @@
                         <label for="person_id" class="col-md-4 col-form-label text-md-right">Marca</label>
                         <div class="col-md-6">
                             <p><strong>{{ $product->brand->name}}</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="mx-auto">
+                                <h4><strong>CUPONES</strong></h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 ">
+                            <table class="table datatable table-striped table-bordered table-hover table-sm">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>PRECIO NORMAL</th>
+                                        <th>DESCUENTO</th>
+                                        <th>PRECIO FINAL</th>
+                                        <th>ESTADO</th>
+                                        <th>STOCK</th>
+                                        <th>VENCIMIENTO</th>
+                                        <th>EMPRESA</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
 
@@ -71,5 +95,29 @@
         uiLibrary: 'bootstrap4',
         locale: 'es-es'
     });
+
+    $(document).ready(function(urlAjax, columnas) {
+                $('.datatable').dataTable( {
+                    buttons: [
+                        'copy', 'excel', 'pdf'
+                    ],
+                    "language": {
+                        "url": "{{asset('Spanish.json')}}"
+                    },
+                    "serverSide" : true,
+                        "ajax" : "{{route('api.products.coupons',$product->id)}}" ,
+                        "columns": [
+                        {data: "id"},
+                        {data: "price"},
+                        {data: "discount"},
+                        {data: "stock"},
+                        {data: "expiration"},
+                        {data: "pribase_pricece"},
+                        {data: "company"},
+                        {data: "status"},
+                    ]
+                } );
+
+            } );
 </script>
 @endsection

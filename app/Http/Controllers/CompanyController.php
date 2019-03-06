@@ -57,7 +57,7 @@ class CompanyController extends Controller
                 $c = new Company();
                 $c->name = $request["nombre"];
                 $c->nit = $request["nit"];
-                $c->image = asset($image_s);
+                $c->image = $image_s;
                 $c->image_s = asset($image_s);
                 $c->person_id =  $request["person_id"];
                 $c->save();

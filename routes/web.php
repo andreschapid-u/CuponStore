@@ -63,3 +63,8 @@ Route::group(['prefix' => 'empresas/{id}/sucursales'], function ($id) {
     Route::post('crear','CompanyController@store_branch')->name('companies.store_branch');
 });
 Route::resource('productos', 'ProductController', ['names' => 'products'])->except(['update', 'destroy', 'edit']);
+
+Route::group(['prefix' => 'productos/{id}/cupones'], function ($id) {
+    Route::get('crear','CouponController@create')->name('coupons.create');
+    Route::post('crear','CouponController@store')->name('coupons.store');
+});

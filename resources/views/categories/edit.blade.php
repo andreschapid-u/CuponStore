@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h3>CATEGORIA</h3>
+
 
     <div class="row">
-        <div class="col-4">
+        <div class="mx-auto col-lg-5 col-md-6 col-sm-12">
 
+            <h3>CATEGORIA</h3>
             <form action="{{route('categorias.update', $category->id)}}" method="POST" class="needs-validation" novalidate>
-                @csrf
-                @method('post')
+                @csrf @method('post')
                 <div class="card ">
                     <div class="card-header bg-primary text-white">
                         Editar Categoria
@@ -25,7 +25,11 @@
                         </div>
                     </div>
                     <div class="card-footer text-muted">
-                        <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                        <div class="row">
+                            <div class="mx-auto">
+                                <button type="submit" class="btn btn-success">Guardar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>

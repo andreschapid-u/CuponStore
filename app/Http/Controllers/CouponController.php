@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Coupon;
 use Illuminate\Http\Request;
+use App\Product;
+use App\Company;
+use Illuminate\Support\Facades\Session;
 
 class CouponController extends Controller
 {
@@ -14,7 +17,7 @@ class CouponController extends Controller
      */
     public function index()
     {
-        //
+        return view("coupons.index");
     }
 
     /**
@@ -22,9 +25,11 @@ class CouponController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view('coupons.create')
+            ->with('product', Product::findOrFail($id))
+            ->with('companies', Company::all());
     }
 
     /**
@@ -33,9 +38,24 @@ class CouponController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        $p = Product::findOrFail($id);
+        $c = new Coupon();
+        $c->stock = $request["Cantidad"];
+        $c->discount = $request["Descuento"];
+        $c->expiration = $request["FechaVencimiento"];
+        $c->price = $request["Precio"];
+        $c->base_price = $request["PrecioBase"];
+        $c->company_id = $request["Empresa"];
+        $c->product_id = $id;
+
+        $c->save();
+
+        Session::flash("success", "Se ha creado el cupon!");
+        return redirect()->route("products.show",$id);
+        // dd($request->all());
     }
 
     /**
@@ -45,9 +65,7 @@ class CouponController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Coupon $coupon)
-    {
-        //
-    }
+    { }
 
     /**
      * Show the form for editing the specified resource.

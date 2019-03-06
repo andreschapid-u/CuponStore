@@ -28,7 +28,7 @@ class Product extends Model
 
     public function coupons()
     {
-        return $this->hasMany(Coupon::class, 'coupon_id', 'id');
+        return $this->hasMany(Coupon::class, 'product_id', 'id');
     }
 
 }
