@@ -70,3 +70,15 @@ Route::get('products',function(){
     ->rawColumns(['image','options'])
     ->toJson();
 })->name("api.products");
+
+Route::get('empresas/{id}/sucursales',function($id){
+    return datatables()
+    ->eloquent(\App\Branch::where("company_id", $id))
+    ->addColumn('department', function ($model) {
+        return $model->city->department->name;
+    })
+    ->addColumn('city', function ($model) {
+        return $model->city->name;
+    })
+    ->toJson();
+})->name("api.companies.branches");

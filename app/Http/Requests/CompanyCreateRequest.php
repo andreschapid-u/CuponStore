@@ -29,6 +29,9 @@ class CompanyCreateRequest extends FormRequest
             'nit' => 'required|unique:companies,nit|numeric',
             'person_id' => 'required|exists:persons,id',
             'logo' => 'required|image',
+            "direccion" => "required|string",
+            "telefono" => "required|numeric|min:8",
+            "ciudad" => "required|integer|exists:cities,id"
         ];
     }
 }

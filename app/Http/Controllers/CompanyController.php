@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Department;
 use Session;
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\CompanyCreateRequest;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +34,8 @@ class CompanyController extends Controller
         if ($rolPu) {
             // dd($rolPu);
             $empresarios = \App\Person::where('role_id', $rolPu->id)->get();
-            return view('companies.create', compact('empresarios'));
+            return view('companies.create', compact('empresarios'))
+                ->with("departments", Department::all());
         }
         Session::flash("error", "No hay Empresarios");
         return redirect()->route('companies.index');
@@ -49,17 +51,31 @@ class CompanyController extends Controller
     {
         // dd(public_path("imagenes"));
         if ($request->file('logo')) {
-            $image_s = Storage::disk('imagenes')->put('/images/empresas',$request->file('logo'));
-            $c = new Company();
-            $c->name = $request["nombre"];
-            $c->nit = $request["nit"];
-            $c->image = asset($image_s);
-            $c->image_s = asset($image_s);
-            $c->person_id =  $request["person_id"];
-            // dd($c);
-            $c->save();
-            Session::flash("success", "Se ha registrado la empresa!");
-            return redirect()->route("companies.index");
+            DB::beginTransaction();
+            try {
+                $image_s = Storage::disk('imagenes')->put('/images/empresas', $request->file('logo'));
+                $c = new Company();
+                $c->name = $request["nombre"];
+                $c->nit = $request["nit"];
+                $c->image = asset($image_s);
+                $c->image_s = asset($image_s);
+                $c->person_id =  $request["person_id"];
+                $c->save();
+                $b = new \App\Branch();
+                $b->address = $request["direccion"];
+                $b->telephone = $request["telefono"];
+                $b->city_id = $request["ciudad"];
+                $b->person_id = $c->person_id;
+
+                $b = $c->branches()->save($b);
+                DB::commit();
+                Session::flash("success", "Se ha registrado la empresa!");
+                return redirect()->route("companies.index");
+            } catch (\Exception $e) {
+                $success = false;
+                DB::rollback();
+                dd("Error", $e->getMessage(), "Rollback realizado!");
+            }
         }
     }
 
@@ -71,7 +87,8 @@ class CompanyController extends Controller
      */
     public function show(Company $company, $id)
     {
-        return view('companies.show')->with("company", Company::findOrFail($id));
+        return view('companies.show')
+            ->with("company", Company::findOrFail($id));
     }
 
     /**
@@ -114,13 +131,13 @@ class CompanyController extends Controller
         $company = Company::findOrFail($id);
         $departments = Department::all();
         return view('companies.branchcreate')
-        ->with('departments', $departments)
-        ->with('company', $company);
+            ->with('departments', $departments)
+            ->with('company', $company);
     }
 
     public function store_branch(BranchCreateRequest $request, $company)
     {
-        try{
+        try {
             $com = Company::findOrFail($company);
             $b = new \App\Branch();
             $b->address = $request["direccion"];
@@ -131,8 +148,8 @@ class CompanyController extends Controller
             $b->save();
             // dd($b);
             Session::flash("success", "Se ha registrado la sucursal!");
-            return redirect()->route('companies.show',$company);
-        }catch(Exeption $e){
+            return redirect()->route('companies.show', $company);
+        } catch (Exeption $e) {
             Session::flash("Error", "No se pudo registrar la sucursal!");
             return redirect()->back()->withInput();
         }
