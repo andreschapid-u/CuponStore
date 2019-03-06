@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Department;
 use Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\CompanyCreateRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\BranchCreateRequest;
 
 class CompanyController extends Controller
 {
@@ -104,5 +106,37 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         //
+    }
+
+    public function create_branch($id)
+    {
+        // dd($id);
+        $company = Company::findOrFail($id);
+        $departments = Department::all();
+        return view('companies.branchcreate')
+        ->with('departments', $departments)
+        ->with('company', $company);
+    }
+
+    public function store_branch(BranchCreateRequest $request, $company)
+    {
+        try{
+            $com = Company::findOrFail($company);
+            $b = new \App\Branch();
+            $b->address = $request["direccion"];
+            $b->telephone = $request["telefono"];
+            $b->city_id = $request["ciudad"];
+            $b->person_id = $com->person_id;
+            $b->company_id = $com->id;
+            $b->save();
+            // dd($b);
+            Session::flash("success", "Se ha registrado la sucursal!");
+            return redirect()->route('companies.show',$company);
+        }catch(Exeption $e){
+            Session::flash("Error", "No se pudo registrar la sucursal!");
+            return redirect()->back()->withInput();
+        }
+
+        // dd($request->all(), $company);
     }
 }

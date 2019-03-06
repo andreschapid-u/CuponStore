@@ -57,3 +57,8 @@ Route::group(['prefix' => 'personas'], function () {
 
 // Route::resource('marcas', 'BrandController')->except(['create', 'shwo', 'destroy']);
 Route::resource('empresas', 'CompanyController', ['names' => 'companies']);
+
+Route::group(['prefix' => 'empresas/{id}/sucursales'], function ($id) {
+    Route::get('crear','CompanyController@create_branch')->name('companies.create_branch');
+    Route::post('crear','CompanyController@store_branch')->name('companies.store_branch');
+});

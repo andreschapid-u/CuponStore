@@ -49,3 +49,8 @@ Route::get('companies',function(){
     ->rawColumns(['logo', 'options'])
     ->toJson();
 })->name("api.companies");
+
+Route::get('cities/{dep}', function ($dep) {
+    $response = \App\Department::find($dep)->cities ?:null;
+    return response($response);
+})->name('cities.department');
