@@ -1,6 +1,5 @@
 @extends('layouts.app')
-<link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-
+{{-- <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" /> --}}
 @section('content') {{-- {{dd($empresarios)}} --}}
 
 <div class="container">
@@ -29,7 +28,7 @@
                     <div class="form-group row">
                         <label for="logo" class="col-md-4 col-form-label text-md-right">Imagen</label>
                         <div class="col-md-6">
-                        <img clas="img-fluid card-img-top" src="{{asset($product->image)}}" style="max-width: 300px;">
+                            <img clas="img-fluid card-img-top" src="{{asset($product->image)}}" style="max-width: 300px;">
                         </div>
                     </div>
 
@@ -49,6 +48,9 @@
                     <div class="table-responsive">
                         <div class="row">
                             <div class="mx-auto">
+
+                                <a class="btn btn-sm btn-success" href="{{ route('coupons.create', $product->id)}}">Crear Cupon</a>
+                                <hr>
                                 <h4><strong>CUPONES</strong></h4>
                             </div>
                         </div>
@@ -59,11 +61,10 @@
                                         <th>ID</th>
                                         <th>PRECIO NORMAL</th>
                                         <th>DESCUENTO</th>
-                                        <th>PRECIO FINAL</th>
-                                        <th>ESTADO</th>
                                         <th>STOCK</th>
                                         <th>VENCIMIENTO</th>
                                         <th>EMPRESA</th>
+                                        <th>ESTADO</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -72,12 +73,12 @@
 
                     <div class="form-group row">
                         <div class="mx-auto">
-                        <a name="" id="" class="btn btn-primary" href="{{route('products.index')}}" role="button">Atras</a>
+                            <a name="" id="" class="btn btn-primary" href="{{route('products.index')}}" role="button">Atras</a>
                         </div>
                     </div>
                     </form>
 
-                    <input id="datepicker" width="276" />
+                    {{-- <input id="datepicker" width="276" /> --}}
 
                 </div>
             </div>
@@ -86,10 +87,9 @@
 </div>
 @endsection
 
-@section('scripts')
-@parent
-<script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
-<script src="https://unpkg.com/gijgo@1.9.11/js/messages/messages.es-es.js" type="text/javascript"></script>
+@section('scripts') @parent
+{{-- <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/gijgo@1.9.11/js/messages/messages.es-es.js" type="text/javascript"></script> --}}
 <script>
     $('#datepicker').datepicker({
         uiLibrary: 'bootstrap4',
@@ -112,12 +112,12 @@
                         {data: "discount"},
                         {data: "stock"},
                         {data: "expiration"},
-                        {data: "pribase_pricece"},
                         {data: "company"},
                         {data: "status"},
                     ]
                 } );
 
             } );
+
 </script>
 @endsection
