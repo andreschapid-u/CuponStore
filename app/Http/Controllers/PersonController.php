@@ -96,7 +96,9 @@ class PersonController extends Controller
      */
     public function show(Person $person)
     {
-        return view('persons.show');
+        $roles = Role::all();
+        return view('persons.show')
+        ->with("roles",$roles);
     }
 
     /**

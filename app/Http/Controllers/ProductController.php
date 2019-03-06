@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use App\Category;
+use App\Brand;
+use Session;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ProductCreateRequest;
 
 class ProductController extends Controller
 {
@@ -14,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view("products.index");
     }
 
     /**
@@ -24,7 +29,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create')
+        ->with('categories',Category::all())
+        ->with('brands',Brand::all());
     }
 
     /**
@@ -33,9 +40,24 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductCreateRequest $request)
     {
-        //
+        if ($request->file('imagen')) {
+            $image_s = Storage::disk('imagenes')->put('/images/productos',$request->file('imagen'));
+            $p = new Product();
+            $p->name = $request["nombre"];
+            $p->description = $request["descripcion"];
+            $p->image = asset($image_s);
+            $p->brand_id = $request["marca"];
+            $p->category_id =  $request["categoria"];
+            // dd($c);
+            $p->save();
+            Session::flash("success", "Se ha registrado el producto!");
+            return redirect()->route("products.index");
+        }
+        Session::flash("error", "NO se pudo registrar el producto!");
+        return redirect()->withInput();
+
     }
 
     /**
@@ -44,9 +66,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, $id)
     {
-        //
+        return view('products.show')->with("product", Product::findOrFail($id));
     }
 
     /**

@@ -54,3 +54,19 @@ Route::get('cities/{dep}', function ($dep) {
     $response = \App\Department::find($dep)->cities ?:null;
     return response($response);
 })->name('cities.department');
+
+
+Route::get('products',function(){
+    return datatables()
+    ->eloquent(\App\Product::query())
+    ->addColumn('category', function ($model) {
+        return $model->category->name;
+    })
+    ->addColumn('brand', function ($model) {
+        return $model->brand->name;
+    })
+    ->addColumn('image', 'products.partials.image_s')
+    ->addColumn('options', 'products.partials.actions')
+    ->rawColumns(['image','options'])
+    ->toJson();
+})->name("api.products");

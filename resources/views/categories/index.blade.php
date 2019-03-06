@@ -30,15 +30,19 @@
             </form>
         </div>
         <div class="offset-sm-1 col-sm-6 ">
-            <table class="table datatable table-striped table-bordered table-hover table-sm">
-                <thead class="thead-inverse">
-                    <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="table-responsive">
+                <div class="col-sm-12 ">
+                    <table class="table datatable table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>ID</th>
+                                <th>NOMBRE</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -55,11 +59,12 @@
                     "url": "Spanish.json"
                 },
                 "serverSide" : true,
-                    "ajax" : "{{url('api/categorias')}}" ,
-                    "columns": [
-                    {data: "id"},
-                    {data: "name"},
-                    {data: "options"},
+                "processing":true,
+                "ajax" : "{{url('api/categorias')}}" ,
+                "columns": [
+                {data: "id"},
+                {data: "name"},
+                {data: "options"},
                 ]
             } );
 
@@ -78,9 +83,7 @@
 
 </script>
 @endsection
-
-
-{{--
+ {{--
 <div id="myModal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

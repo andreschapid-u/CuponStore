@@ -35,7 +35,7 @@
 
         <div class="col-md-6">
             <div class="table-responsive">
-                <div class="col-sm-12">
+                <div class="col-sm-12 ">
                     <table class="table datatable table-striped table-bordered table-hover table-sm">
                         <thead class="thead-inverse">
                             <tr>
