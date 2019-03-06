@@ -1,6 +1,6 @@
 /* Mis estilos */
 
-body{
+body {
     margin-top: 59px !important;
     background-color: rgb(241, 241, 241) !important;
 }
@@ -8,9 +8,24 @@ body{
 .navbar-laravel {
     background-color: ghostwhite !important;
     box-shadow: 2px 2px 5px rgb(52, 65, 241) !important;
-  }
+}
 
-  .navbar-laravel > .logo{
-      width: 45px;
-      height: 45px;
-  }
+.navbar-laravel>.logo {
+    width: 45px;
+    height: 45px;
+}
+
+table.dataTable thead th.sorting:after {
+    content: "\f0dc";
+    color: #ddd;
+    font-size: 0.8em;
+    padding-top: 0.12em;
+}
+
+table.dataTable thead th.sorting_asc:after {
+    content: "&uarr";
+}
+
+table.dataTable thead th.sorting_desc:after {
+    content: "\f0dd";
+}

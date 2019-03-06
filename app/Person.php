@@ -44,6 +44,11 @@ class Person extends Authenticatable
         return $this->hasMany(Purchase::class, 'product_id', 'id');
     }
 
+    public function getFullName()
+    {
+        return $this->first_name. ' ' .$this->last_name;
+    }
+
 
     // TODO: Terminar funcionalidad
     // TODO: Relacion com empresa

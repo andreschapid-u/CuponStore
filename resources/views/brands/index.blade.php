@@ -25,7 +25,9 @@
                         </div>
                     </div>
                     <div class="card-footer text-muted">
-                        <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                        <div class="col center">
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                        </div>
                     </div>
                 </div>
             </form>

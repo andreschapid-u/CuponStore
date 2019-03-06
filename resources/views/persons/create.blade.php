@@ -12,7 +12,6 @@
 
                         <div class="form-group row">
                             <label for="nombres" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
-
                             <div class="col-md-6">
                                 <input id="nombres" type="text" class="form-control{{ $errors->has('nombres') ? ' is-invalid' : '' }}" name="nombres" value="{{ old('nombres') }}"
                                     required autofocus> @if ($errors->has('nombres'))
@@ -70,8 +69,8 @@
                         <div class="form-group row">
                             <label for="rol" class="col-md-4 col-form-label text-md-right">{{__('Role')}}</label>
                             <div class="col-md-6">
-                                <select class="form-control {{ $errors->has('rol') ? ' is-invalid' : '' }} " name="rol" id="rol">
-                                    <option value="0" >Seleccione uno...</option>
+                                <select required class="form-control {{ $errors->has('rol') ? ' is-invalid' : '' }} " name="rol" id="rol">
+                                    <option value="" >Seleccione uno...</option>
                                     @foreach ($roles as $rol)
                                         <option value="{{$rol->id}}" >{{$rol->name}}</option>
                                     @endforeach

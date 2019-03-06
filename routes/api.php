@@ -24,6 +24,7 @@ Route::get('marcas', function(){
     ->rawColumns(['options'])
     ->toJson();
 });
+
 Route::get('categorias', function(){
     return datatables()
     ->eloquent(\App\Category::query())
@@ -36,3 +37,15 @@ Route::get('categorias', function(){
 Route::get('marcas/get/{id}', function($id){
     return response(\App\Brand::find($id));
 });
+
+Route::get('companies',function(){
+    return datatables()
+    ->eloquent(\App\Company::query())
+    ->addColumn('businessman', function ($model) {
+        return $model->boss->getFullName();
+    })
+    ->addColumn('logo', 'companies.partials.image_s')
+    ->addColumn('options', 'companies.partials.actions')
+    ->rawColumns(['logo', 'options'])
+    ->toJson();
+})->name("api.companies");

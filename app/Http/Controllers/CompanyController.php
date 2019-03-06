@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use Session;
 use Illuminate\Http\Request;
+use App\Http\Requests\CompanyCreateRequest;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -14,7 +17,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        return view("companies.index");
     }
 
     /**
@@ -24,7 +27,14 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        $rolPu = \App\Role::where('name', 'Empresario')->first();
+        if ($rolPu) {
+            // dd($rolPu);
+            $empresarios = \App\Person::where('role_id', $rolPu->id)->get();
+            return view('companies.create', compact('empresarios'));
+        }
+        Session::flash("error", "No hay Empresarios");
+        return redirect()->route('companies.index');
     }
 
     /**
@@ -33,9 +43,22 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyCreateRequest $request)
     {
-        //
+        // dd(public_path("imagenes"));
+        if ($request->file('logo')) {
+            $image_s = Storage::disk('imagenes')->put('/images/empresas',$request->file('logo'));
+            $c = new Company();
+            $c->name = $request["nombre"];
+            $c->nit = $request["nit"];
+            $c->image = asset($image_s);
+            $c->image_s = asset($image_s);
+            $c->person_id =  $request["person_id"];
+            // dd($c);
+            $c->save();
+            Session::flash("success", "Se ha registrado la empresa!");
+            return redirect()->route("companies.index");
+        }
     }
 
     /**
@@ -44,9 +67,9 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(Company $company, $id)
     {
-        //
+        return view('companies.show')->with("company", Company::findOrFail($id));
     }
 
     /**

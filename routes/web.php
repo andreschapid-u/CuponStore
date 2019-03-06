@@ -56,8 +56,4 @@ Route::group(['prefix' => 'personas'], function () {
 });
 
 // Route::resource('marcas', 'BrandController')->except(['create', 'shwo', 'destroy']);
-Route::resources([
-    'productos' => 'ProductController',
-    'tipos-pago' => 'PaymentMethodController',
-    'cupones' => 'CouponController',
-]);
+Route::resource('empresas', 'CompanyController', ['names' => 'companies']);

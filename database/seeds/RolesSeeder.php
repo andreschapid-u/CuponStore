@@ -31,6 +31,28 @@ class RolesSeeder extends Seeder
         Role::create(['name' => 'Cliente']); // Cliente de paso
         Role::create(['name' => 'Checker']);
 
+        Category::create(['name' => 'TV, Audio y Foto']);
+        Category::create(['name' => 'Arte y artesanías']);
+        Category::create(['name' => 'Automotriz']);
+        Category::create(['name' => 'Juguetes']);
+        Category::create(['name' => 'Belleza y cuidado personal']);
+        Category::create(['name' => 'Libros']);
+        Category::create(['name' => 'Computación']);
+        Category::create(['name' => 'Celulares y Tablets']);
+        Category::create(['name' => 'Moda']);
+        Category::create(['name' => 'Salud y productos para el hogar']);
+        Category::create(['name' => 'Hogar y cocina']);
+        Category::create(['name' => 'Industrial y científico']);
+        Category::create(['name' => 'Equipaje']);
+        Category::create(['name' => 'Insumos para mascotas']);
+        Category::create(['name' => 'Software']);
+        Category::create(['name' => 'Deportes y actividades al aire libre']);
+        Category::create(['name' => 'Herramientas y mejoramiento del hogar']);
+        Category::create(['name' => 'Juguetes y juegos']);
+        Category::create(['name' => 'Consolas y Videojuegos']);
+        Category::create(['name' => 'Ventas y ofertas']);
+        Category::create(['name' => 'Tecnologia']);
+
         // Administrador
         $person = Person::create([
             'first_name' => 'Carlos',
@@ -45,7 +67,7 @@ class RolesSeeder extends Seeder
         ]);
 
         $b = Brand::create(['name' => 'Adidas']);
-        $c = Category::create(['name' => 'Tegnologia']);
+        $c = Category::
         $product = Product::create(['name' => 'p1', 'image' => 'img', 'brand_id' => $b->id, 'category_id' => $c->id]);
         $com = Company::create([
             'name' => 'Empresa 1', 'nit' => 1233, 'image' => 'iiiii', 'image_s' => 'iiiii',
@@ -85,25 +107,6 @@ class RolesSeeder extends Seeder
 
 
 
-        Category::create(['name' => 'TV, Audio y Foto']);
-        Category::create(['name' => 'Arte y artesanías']);
-        Category::create(['name' => 'Automotriz']);
-        Category::create(['name' => 'Juguetes']);
-        Category::create(['name' => 'Belleza y cuidado personal']);
-        Category::create(['name' => 'Libros']);
-        Category::create(['name' => 'Computación']);
-        Category::create(['name' => 'Celulares y Tablets']);
-        Category::create(['name' => 'Moda']);
-        Category::create(['name' => 'Salud y productos para el hogar']);
-        Category::create(['name' => 'Hogar y cocina']);
-        Category::create(['name' => 'Industrial y científico']);
-        Category::create(['name' => 'Equipaje']);
-        Category::create(['name' => 'Insumos para mascotas']);
-        Category::create(['name' => 'Software']);
-        Category::create(['name' => 'Deportes y actividades al aire libre']);
-        Category::create(['name' => 'Herramientas y mejoramiento del hogar']);
-        Category::create(['name' => 'Juguetes y juegos']);
-        Category::create(['name' => 'Consolas y Videojuegos']);
-        Category::create(['name' => 'Ventas y ofertas']);
+
     }
 }
