@@ -60,7 +60,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link btn-outline-info" href="{{ route('categorias') }}">Categorias</a>
+                    <a class="nav-link btn-outline-info" href="{{ route('categorias') }}">Categorías</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link btn-outline-info" href="{{ route('brands') }}">Marcas</a>

@@ -11,7 +11,7 @@
                     <tr>
                         <th>ID</th>
                         <th>NOMBRES</th>
-                        <th>CATEGORIA</th>
+                        <th>CATEGORÍA</th>
                         <th>MARCA</th>
                         <th>IMAGEN</th>
                         <th>&nbsp;</th>
@@ -25,7 +25,7 @@
 
 @section('scripts')@parent
 <script>
-    //Configuracion de datatables
+    //Configuración de datatables
             $(document).ready(function(urlAjax, columnas) {
                 $('.datatable').dataTable( {
                     buttons: [

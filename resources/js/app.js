@@ -53,7 +53,7 @@ window.toastr = require('toastr');
         });
     }, false);
 })();
-// COnfiguracion toastr
+// Configuración toastr
 toastr.options = {
     "closeButton": true,
     "debug": false,

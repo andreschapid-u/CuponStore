@@ -31,7 +31,7 @@ class DepartmentsTableSeeder extends Seeder
             Department::create(['id' => 50, 'name' => 'META']);
             Department::create(['id' => 52, 'name' => 'NARIÑO']);
             Department::create(['id' => 54, 'name' => 'NORTE DE SANTANDER']);
-            Department::create(['id' => 63, 'name' => 'QUINDIO']);
+            Department::create(['id' => 63, 'name' => 'QUINDÍO']);
             Department::create(['id' => 66, 'name' => 'RISARALDA']);
             Department::create(['id' => 68, 'name' => 'SANTANDER']);
             Department::create(['id' => 70, 'name' => 'SUCRE']);

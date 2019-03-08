@@ -6,17 +6,17 @@
     <div class="row">
         <div class="mx-auto col-lg-5 col-md-6 col-sm-12">
 
-            <h3>CATEGORIA</h3>
+            <h3>CATEGORÍA</h3>
             <form action="{{route('categorias.update', $category->id)}}" method="POST" class="needs-validation" novalidate>
                 @csrf @method('post')
                 <div class="card ">
                     <div class="card-header bg-primary text-white">
-                        Editar Categoria
+                        Editar Categoría
                     </div>
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Nombre</label>
-                            <input required type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="name" placeholder="Nombre de la categoria..."
+                            <input required type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="name" placeholder="Nombre de la categoría..."
                                 value="{{$category->name}}"> @if ($errors->has('name'))
                             <div class="invalid-feedback">
                                 <strong>{{ $errors->first('name') }}</strong>

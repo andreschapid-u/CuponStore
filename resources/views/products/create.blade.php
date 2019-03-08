@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="descripcion" class="col-md-4 col-form-label text-md-right">descripcion</label>
+                            <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripción</label>
                             <div class="col-md-6">
                                 <input id="descripcion" type="text" class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" name="descripcion"
                                     value="{{ old('descripcion') }}" autofocus> @if ($errors->has('descripcion'))
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="categoria" class="col-md-4 col-form-label text-md-right">Categorias</label>
+                            <label for="categoria" class="col-md-4 col-form-label text-md-right">Categorías</label>
                             <div class="col-md-6">
                                 <select required class="form-control " name="categoria" id="categoria">
                                     <option value="" selected>Seleccione uno....</option>

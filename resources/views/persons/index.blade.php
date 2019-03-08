@@ -15,7 +15,7 @@
                         <th>APELLIDOS</th>
                         <th>ROL</th>
                         <th>CORREO</th>
-                        <th>CORREO ENVIO</th>
+                        <th>CORREO ENVIÓ</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -31,7 +31,7 @@
 
 
 <script>
-    //Configuracion de datatables
+    //Configuración de datatables
         $(document).ready(function(urlAjax, columnas) {
             $('.datatable').dataTable( {
                 "language": {

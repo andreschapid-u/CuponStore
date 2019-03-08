@@ -9,7 +9,7 @@
         var noSelected = document.createElement('option');
         noSelected.value = "";
         noSelected.innerHTML = "Seleccione una ciudad";
-        noSelected.seleted = true;
+        noSelected.selected = true;
         ciudades.appendChild(noSelected);
         if(this.value != ""){
             fetch(

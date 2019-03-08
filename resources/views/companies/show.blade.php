@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="logo" class="col-md-4 col-form-label text-md-right">logo</label>
+                        <label for="logo" class="col-md-4 col-form-label text-md-right">Logo</label>
                         <div class="col-md-6">
                             <img clas="img-fluid" src="{{asset($company->image)}}">
                         </div>
@@ -49,8 +49,8 @@
                                 <thead class="thead-inverse">
                                     <tr>
                                         <th>ID</th>
-                                        <th>DIRECCION</th>
-                                        <th>TELEFONO</th>
+                                        <th>DIRECCIÓN</th>
+                                        <th>TELÉFONO</th>
                                         <th>DEPARTAMENTO</th>
                                         <th>CIUDAD</th>
                                     </tr>
@@ -74,7 +74,7 @@
 
 @section('scripts')@parent
 <script>
-    //Configuracion de datatables
+    //Configuración de datatables
             $(document).ready(function(urlAjax, columnas) {
                 $('.datatable').dataTable( {
                     buttons: [

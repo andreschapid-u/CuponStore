@@ -51,7 +51,7 @@ class RolesSeeder extends Seeder
         Category::create(['name' => 'Juguetes y juegos']);
         Category::create(['name' => 'Consolas y Videojuegos']);
         Category::create(['name' => 'Ventas y ofertas']);
-        Category::create(['name' => 'Tecnologia']);
+        Category::create(['name' => 'Tecnología']);
 
         // Administrador
         $person = Person::create([

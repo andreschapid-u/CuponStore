@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="person_id" class="col-md-4 col-form-label text-md-right">Categoria</label>
+                        <label for="person_id" class="col-md-4 col-form-label text-md-right">Categoría</label>
                         <div class="col-md-6">
                             <p><strong>{{ $product->category->name}}</strong></p>
                         </div>
@@ -49,7 +49,7 @@
                         <div class="row">
                             <div class="mx-auto">
 
-                                <a class="btn btn-sm btn-success" href="{{ route('coupons.create', $product->id)}}">Crear Cupon</a>
+                                <a class="btn btn-sm btn-success" href="{{ route('coupons.create', $product->id)}}">Crear Cupón</a>
                                 <hr>
                                 <h4><strong>CUPONES</strong></h4>
                             </div>
@@ -73,7 +73,7 @@
 
                     <div class="form-group row">
                         <div class="mx-auto">
-                            <a name="" id="" class="btn btn-primary" href="{{route('products.index')}}" role="button">Atras</a>
+                            <a name="" id="" class="btn btn-primary" href="{{route('products.index')}}" role="button">Atrás</a>
                         </div>
                     </div>
                     </form>

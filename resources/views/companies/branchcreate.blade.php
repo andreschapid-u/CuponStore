@@ -14,7 +14,7 @@
                         @csrf @method('post')
 
                         <div class="form-group row">
-                            <label for="direccion" class="col-md-4 col-form-label text-md-right">Dicección</label>
+                            <label for="direccion" class="col-md-4 col-form-label text-md-right">Dirección</label>
                             <div class="col-md-6">
                                 <input id="direccion" type="text" class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" name="direccion"
                                     value="{{ old('direccion') }}" required autofocus> @if ($errors->has('direccion'))
@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="telefono" class="col-md-4 col-form-label text-md-right">Telefono</label>
+                            <label for="telefono" class="col-md-4 col-form-label text-md-right">Teléfono</label>
                             <div class="col-md-6">
                                 <input id="telefono" type="number" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" name="telefono"
                                     value="{{ old('telefono') }}" required autofocus> @if ($errors->has('telefono'))

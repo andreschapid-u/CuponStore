@@ -31,7 +31,7 @@ class CitiesTableSeeder extends Seeder
         City::create(['name' => 'Albán', 'department_id' =>25]);
         City::create(['name' => 'Albán [San José]', 'department_id' =>52]);
         City::create(['name' => 'Alcalá', 'department_id' =>76]);
-        City::create(['name' => 'Alejandria', 'department_id' =>5]);
+        City::create(['name' => 'Alejandría', 'department_id' =>5]);
         City::create(['name' => 'Algarrobo', 'department_id' =>47]);
         City::create(['name' => 'Algeciras', 'department_id' =>41]);
         City::create(['name' => 'Almaguer', 'department_id' =>19]);
@@ -45,7 +45,7 @@ class CitiesTableSeeder extends Seeder
         City::create(['name' => 'Amalfi', 'department_id' =>5]);
         City::create(['name' => 'Ambalema', 'department_id' =>73]);
         City::create(['name' => 'Anapoima', 'department_id' =>25]);
-        City::create(['name' => 'Ancuya', 'department_id' =>52]);
+        City::create(['name' => 'Ancuyá', 'department_id' =>52]);
         City::create(['name' => 'Andalucía', 'department_id' =>76]);
         City::create(['name' => 'Andes', 'department_id' =>5]);
         City::create(['name' => 'Angelópolis', 'department_id' =>5]);
@@ -161,7 +161,7 @@ class CitiesTableSeeder extends Seeder
         City::create(['name' => 'California', 'department_id' =>68]);
         City::create(['name' => 'Calima [Darién]', 'department_id' =>76]);
         City::create(['name' => 'Caloto', 'department_id' =>19]);
-        City::create(['name' => 'Calí', 'department_id' =>76]);
+        City::create(['name' => 'Cali', 'department_id' =>76]);
         City::create(['name' => 'Campamento', 'department_id' =>5]);
         City::create(['name' => 'Campo de la Cruz', 'department_id' =>8]);
         City::create(['name' => 'Campoalegre', 'department_id' =>41]);

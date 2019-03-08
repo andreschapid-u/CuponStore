@@ -51,7 +51,7 @@ class Person extends Authenticatable
 
 
     // TODO: Terminar funcionalidad
-    // TODO: Relacion com empresa
-    // TODO: Relacion com sucursales
+    // TODO: Relación com empresa
+    // TODO: Relación com sucursales
 
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h3>CATEGORIAS</h3>
+    <h3>CATEGORÍAS</h3>
 
     <div class="row">
         <div class="col-sm-12 col-md-4 col-lg-4">
@@ -10,7 +10,7 @@
                 @csrf
                 <div class="card ">
                     <div class="card-header bg-primary text-white">
-                        Registrar Categoria
+                        Registrar Categoría
                     </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -52,7 +52,7 @@
 
 
 <script>
-    //Configuracion de datatables
+    //Configuración de datatables
         $(document).ready(function(urlAjax, columnas) {
             $('.datatable').dataTable( {
                 "language": {

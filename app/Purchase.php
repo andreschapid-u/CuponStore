@@ -25,5 +25,5 @@ class Purchase extends Model
     {
         return $this->belongsTo(Coupon::class, 'coupon_id', 'id');
     }
-    // TODO: Crear duncionalidad
+    // TODO: Crear funcionalidad
 }

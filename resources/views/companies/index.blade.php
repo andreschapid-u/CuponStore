@@ -25,7 +25,7 @@
 
 @section('scripts')@parent
 <script>
-    //Configuracion de datatables
+    //Configuración de datatables
             $(document).ready(function(urlAjax, columnas) {
                 $('.datatable').dataTable( {
                     buttons: [
