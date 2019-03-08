@@ -91,10 +91,10 @@
 {{-- <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
 <script src="https://unpkg.com/gijgo@1.9.11/js/messages/messages.es-es.js" type="text/javascript"></script> --}}
 <script>
-    $('#datepicker').datepicker({
-        uiLibrary: 'bootstrap4',
-        locale: 'es-es'
-    });
+    // $('#datepicker').datepicker({
+    //     uiLibrary: 'bootstrap4',
+    //     locale: 'es-es'
+    // });
 
     $(document).ready(function(urlAjax, columnas) {
                 $('.datatable').dataTable( {
