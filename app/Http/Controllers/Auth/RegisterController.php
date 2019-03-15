@@ -99,8 +99,8 @@ class RegisterController extends Controller
         }
 
 
-        // error aqui
-        return "Ocurrio un error al registrar";
+        // error aquí
+        return "Ocurrió un error al registrar";
     }
 
     public function register(Request $request)
