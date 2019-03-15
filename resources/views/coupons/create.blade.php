@@ -114,18 +114,18 @@
 @endsection
 
 @section('scripts')
-<script src="https://unpkg.com/scrollreveal"></script>
+{{-- <script src="https://unpkg.com/scrollreveal"></script> --}}
 @parent
 <script src="{{asset('/js/popper.min.js')}}"></script>
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script> --}}
 <script>
-    window.sr = ScrollReveal();
-    sr.reveal('.card', {
-        duration: 1000,
-        origin: 'bottom',
-        distance: '300px'
-    });
+    // window.sr = ScrollReveal();
+    // sr.reveal('.card', {
+    //     duration: 1000,
+    //     origin: 'bottom',
+    //     distance: '300px'
+    // });
 
     var slider = document.getElementById("Descuento");
     var output = document.getElementById("l_Valor");

@@ -36,14 +36,16 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> {{--
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
+    {{--
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         --}} {{-- crossorigin="anonymous"> --}}
 
 
 </head>
 <header>
-    <nav class="navbar navbar-light navbar-laravel navbar-expand-md fixed-top text-uppercase">
+    <nav class="navbar navbar-light navbar-laravel navbar-expand-md fixed-top text-uppercase shadow">
         {{-- <nav class="navbar navbar-dark navbar-expand-md fixed-top text-uppercase "> --}}
 
         <a class="navbar-brand" href="{{ url('/') }}">
@@ -58,7 +60,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto small">
                 <li class="nav-item">
                     <a class="nav-link btn-outline-info" href="{{ route('categorias') }}">Categorías</a>
                 </li>
