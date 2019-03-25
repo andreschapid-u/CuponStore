@@ -42,7 +42,7 @@
                         {data: "nit"},
                         {data: "businessman"},
                         {data: "logo"},
-                        {data: "options"},
+                        {data: "options",'orderable' : false},
                     ]
                 } );
 

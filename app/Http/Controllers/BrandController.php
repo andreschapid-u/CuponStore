@@ -88,9 +88,9 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand, $id)
+    public function update(Request $request)
     {
-        $b = Brand::findOrFail($id);
+        $b = Brand::findOrFail(request("id"));
 
         $validate = Validator::make($request->all(), [
             'name' => 'required|unique:brands,name'
@@ -103,11 +103,12 @@ class BrandController extends Controller
         } else {
             $b->name = $request['name'];
             $b->update();
-            Session::flash('success', "Se ha guaradado correctamente.");
-            return  view('brands.index');
-        }
 
-        $b->update();
+            Session::flash('success', "Se ha guaradado  correctamente la marca.");
+            // toastr()->success('Data has been saved successfully!');
+
+            return  redirect()->route('brands');
+        }
     }
 
     /**

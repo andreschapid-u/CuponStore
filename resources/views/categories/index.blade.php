@@ -64,7 +64,7 @@
                 "columns": [
                 {data: "id"},
                 {data: "name"},
-                {data: "options"},
+                {data: "options",'orderable' : false},
                 ]
             } );
 

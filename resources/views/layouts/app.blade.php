@@ -37,7 +37,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
     {{--
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         --}} {{-- crossorigin="anonymous"> --}}
@@ -48,7 +47,7 @@
     <nav class="navbar navbar-light navbar-laravel navbar-expand-md fixed-top text-uppercase shadow">
         {{-- <nav class="navbar navbar-dark navbar-expand-md fixed-top text-uppercase "> --}}
 
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand " href="{{ url('/') }}">
                         <img src="{{ asset('img/favicon-32x32.png') }}" class="img-fluid logo" alt="CuponStore">
                         {{-- {{ config('app.name', 'Laravel') }} --}}
                     </a>
@@ -61,20 +60,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto small">
-                <li class="nav-item">
+            <li class="nav-item ">
                     <a class="nav-link btn-outline-info" href="{{ route('categorias') }}">Categorías</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link btn-outline-info" href="{{ route('brands') }}">Marcas</a>
+                <li class="nav-item ">
+                    <a class="nav-link btn-outline-info {{active('marcas')}}" href="{{ route('brands') }}">Marcas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-outline-info" href="{{ route('persons') }}">Usuarios</a>
+                    <a class="nav-link btn-outline-info {{active('personas')}}" href="{{ route('persons') }}">Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-outline-info" href="{{ route('companies.index') }}">Empresas</a>
+                    <a class="nav-link btn-outline-info {{active('empresas')}}" href="{{ route('companies.index') }}">Empresas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-outline-info" href="{{ route('products.index') }}">Productos</a>
+                    <a class="nav-link btn-outline-info {{active('productos')}}" href="{{ route('products.index') }}">Productos</a>
                 </li>
             </ul>
 
@@ -100,6 +99,7 @@
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" v-pre>
+                        <i class="fa fa-user-circle"></i>
                                     {{ Auth::user()->person->first_name }} <span class="caret"></span>
                                 </a>
 
