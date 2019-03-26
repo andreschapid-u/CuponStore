@@ -16,13 +16,22 @@
                     <form method="POST" action="{{ route('coupons.store', $product->id) }}">
                         @csrf @method('POST')
                         <div class="row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="product" class="col-form-label text-md-right" id="l_Producto">Producto</label>
 
                                 <div class="">
                                     <input disabled id="" type="text" class="form-control" value="{{$product->name}}">
                                 </div>
                             </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="bransh" class="col-form-label text-md-right" id="l_Marca">Marca</label>
+                                <div class="">
+                                    <input class="form-control" disabled type="text" name="" id="" value="{{$product->brand->name}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="Empresa" class="col-form-label text-md-right" id="l_Empresa">Empresa</label>
 
@@ -35,18 +44,25 @@
                                 </select>
                                 </div>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="bransh" class="col-form-label text-md-right" id="l_Marca">Marca</label>
-                                <div class="">
-                                    <input class="form-control" disabled type="text" name="" id="" value="{{$product->brand->name}}">
+                            <div class="form-gruop col-md-8 my-sm-2">
+                                <div class="text-center">
+                                    <label for="textDescrip" id="l_Descripcion">Sucursales</label>
+                                    <div>
+                                        <ul>
+                                            <li>12</li>
+                                            <li>3</li>
+                                            <li>4</li>
+                                            <li>5</li>
+                                            <li>6</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="row">
                             <div class="form-gruop col-md-6">
                                 <div class=" mx-auto">
-                                    <div class="form-group">
-                                        <img src="{{asset($product->image)}}" alt="Img_Producto" class="img-fluid" style="max-width: 300px;">
-                                    </div>
+                                    <img src="{{asset($product->image)}}" alt="Img_Producto" class="img-fluid" style="max-width: 300px;">
                                 </div>
                             </div>
 
@@ -56,8 +72,8 @@
                                     <textarea disabled style="resize:none;" class="form-control" rows="6">{{$product->description}}</textarea>
                                 </div>
                             </div>
-
-
+                        </div>
+                        <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="Precio" class="col-form-label text-md-right" id="l_Precio">Precio</label>
 
@@ -85,7 +101,8 @@
 
                                 <label class="col-form-label text-md-right" id="l_Valor"></label>
                             </div>
-
+                        </div>
+                        <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="PrecioFinal" class="col-form-label text-md-right" id="l_PF">Precio Final</label>
 
@@ -98,7 +115,7 @@
                                 <label for="FechaVencimiento" class="col-form-label text-md-right" id="l_FechaExp">Fecha Terminal</label>
 
                                 <div class="">
-                                    <input id="FechaVencimiento" name="FechaVencimiento" type="date" class="form-control" required>
+                                    <input id="FechaVencimiento" name="FechaVencimiento" type="date" min="{{ date(" Y-m-d H:i:s ")}}" class="form-control" required>
                                 </div>
                             </div>
 
@@ -118,17 +135,16 @@
                             </div>
                         </div>
                     </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 @endsection
 
-@section('scripts') {{--
-<script src="https://unpkg.com/scrollreveal"></script> --}} @parent
+@section('scripts')
 <script src="{{asset('/js/popper.min.js')}}"></script>
-{{--
+    @include("coupons.partials.branches_search") {{--
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script> --}}
 <script>

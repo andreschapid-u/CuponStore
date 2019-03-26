@@ -40,7 +40,8 @@ Route::get('marcas/get/{id}', function($id){
 
 Route::get('companies',function(){
     return datatables()
-    ->eloquent(\App\Company::query())
+    // ->eloquent(\App\Company::query())
+    ->eloquent(\App\Company::with("boss")->select("companies.*"))
     ->addColumn('businessman', function ($model) {
         return $model->boss->getFullName();
     })

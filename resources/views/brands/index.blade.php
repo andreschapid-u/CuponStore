@@ -55,9 +55,7 @@
 </div>
 @endsection
 
-@section('scripts') @parent
-
-
+@section('scripts')
 <script>
     //Configuración de datatables
         $(document).ready(function(urlAjax, columnas) {
