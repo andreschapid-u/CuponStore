@@ -48,9 +48,7 @@
 </div>
 @endsection
 
-@section('scripts') @parent
-
-
+@section('scripts')
 <script>
     //Configuración de datatables
         $(document).ready(function(urlAjax, columnas) {
@@ -64,7 +62,7 @@
                 "columns": [
                 {data: "id"},
                 {data: "name"},
-                {data: "options"},
+                {data: "options",'orderable' : false},
                 ]
             } );
 

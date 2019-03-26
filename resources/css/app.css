@@ -2,30 +2,35 @@
 
 body {
     margin-top: 59px !important;
-    background-color: rgb(241, 241, 241) !important;
+    background-color:  !important;
 }
 
 .navbar-laravel {
-    background-color: ghostwhite !important;
-    box-shadow: 2px 2px 5px rgb(52, 65, 241) !important;
+    background-color: rgb(255, 254, 248) !important;
+    box-shadow: 2px 5px 10px rgb(52, 65, 241) !important;
 }
+/* .navbar-laravel {
+    background-color: rgb(252, 213, 39) !important;
+    box-shadow: 2px 5px 10px rgb(245, 129, 75) !important;
+} */
 
 .navbar-laravel>.logo {
     width: 45px;
     height: 45px;
 }
 
-/* table.dataTable thead th.sorting:after {
-    content: "\f0dc";
-    color: #ddd;
-    font-size: 0.8em;
-    padding-top: 0.12em;
+.btn{
+    font-family: cursive;
 }
+.btn-circle {
+    margin: 5px 0px 0px -5px;
+    width:60px;
+    height:60px;
+      display: inline-block;
+      padding: 6px 0px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.42857;
+  }
 
-table.dataTable thead th.sorting_asc:after {
-    content: "&uarr";
-}
-
-table.dataTable thead th.sorting_desc:after {
-    content: "\f0dd";
-} */

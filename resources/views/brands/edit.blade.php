@@ -7,8 +7,9 @@
         <div class="mx-auto col-lg-5 col-md-6 col-sm-12">
             <h3>MARCAS</h3>
 
-            <form action="{{route('brands.update', $brand->id)}}" method="POST" class="needs-validation" novalidate>
-                @csrf @method('put')
+            <form action="{{route('brands.update')}}" method="POST" class="needs-validation" novalidate>
+                @csrf @method('POST')
+            <input type="hidden" name="id" id="id" value="{{ $brand->id}}">
                 <div class="card ">
                     <div class="card-header bg-primary text-white">
                         Editar Marca
@@ -36,7 +37,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('scripts') @parent
 @endsection

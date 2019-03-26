@@ -147,19 +147,25 @@ class PersonController extends Controller
     {
 
         // $user = Auth::user()->person;
+        $personQuery = \App\Person::with('role')->with('user')->select('persons.*');
         // $personQuery = \App\Person::query();
-        $personQuery = \App\Person::query();
+        // $dbPersons = \App\Person::join('roles', 'roles.id', 'persons.id')->get();
+        // $dbPersons = DB::table('persons')->join('roles', 'roles.id', 'persons.id');
 
+        // dd($personQuery, $dbPersons);
+        // dd($personQuery);
+
+        // ->eloquent($personQuery)
         return datatables()
             ->eloquent($personQuery)
-            ->addColumn('role', function ($model) {
-                return $model->role->name;
-            })
-            ->addColumn('email', function ($model) {
-                return $model->user->email;
-            })
             ->addColumn('options', 'persons.partials.actions')
             ->rawColumns(['options'])
             ->toJson();
+        }
     }
-}
+                        // ->addColumn('role', function ($model) {
+                        //     return $model->role->name;
+                        // })
+                        // ->addColumn('email', function ($model) {
+                        //     return $model->user->email;
+                        // })

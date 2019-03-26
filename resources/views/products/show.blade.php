@@ -1,5 +1,6 @@
-@extends('layouts.app')
-{{-- <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" /> --}}
+@extends('layouts.app') {{--
+<link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css"
+/> --}}
 @section('content') {{-- {{dd($empresarios)}} --}}
 
 <div class="container">
@@ -77,9 +78,6 @@
                         </div>
                     </div>
                     </form>
-
-                    {{-- <input id="datepicker" width="276" /> --}}
-
                 </div>
             </div>
         </div>
@@ -87,15 +85,8 @@
 </div>
 @endsection
 
-@section('scripts') @parent
-{{-- <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
-<script src="https://unpkg.com/gijgo@1.9.11/js/messages/messages.es-es.js" type="text/javascript"></script> --}}
+@section('scripts')
 <script>
-    // $('#datepicker').datepicker({
-    //     uiLibrary: 'bootstrap4',
-    //     locale: 'es-es'
-    // });
-
     $(document).ready(function(urlAjax, columnas) {
                 $('.datatable').dataTable( {
                     buttons: [

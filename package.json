@@ -17,9 +17,10 @@
         "laravel-mix": "^2.0",
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
-        "vue": "^2.5.7"
+        "vue": "^2.6.10"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.8.1",
         "datatables.net-bs4": "^1.10.19",
         "toastr": "^2.1.4"
     }

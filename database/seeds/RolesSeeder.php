@@ -67,7 +67,7 @@ class RolesSeeder extends Seeder
         ]);
 
         $b = Brand::create(['name' => 'Adidas']);
-        $c = Category::
+        $c = Category::first();
         $product = Product::create(['name' => 'p1', 'image' => 'img', 'brand_id' => $b->id, 'category_id' => $c->id]);
         $com = Company::create([
             'name' => 'Empresa 1', 'nit' => 1233, 'image' => 'iiiii', 'image_s' => 'iiiii',

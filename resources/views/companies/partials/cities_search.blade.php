@@ -1,4 +1,4 @@
-@section('scripts') @parent
+@section('scripts')
 <script>
     $(document).ready(function(){
     document.getElementById('departamento').addEventListener('change',function(){

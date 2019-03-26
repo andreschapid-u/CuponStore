@@ -23,7 +23,7 @@
 </div>
 @endsection
 
-@section('scripts')@parent
+@section('scripts')
 <script>
     //Configuración de datatables
             $(document).ready(function(urlAjax, columnas) {
@@ -42,7 +42,7 @@
                         {data: "nit"},
                         {data: "businessman"},
                         {data: "logo"},
-                        {data: "options"},
+                        {data: "options",'orderable' : false},
                     ]
                 } );
 
