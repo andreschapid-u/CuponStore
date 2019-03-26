@@ -19,6 +19,16 @@ Route::get('/prueba', function () {
     return view('prueba');
 });
 
+
+Route::get('/empresa', function () {
+    return view('empresa');
+});
+
+Route::get('/administrador', function () {
+    return view('administrador');
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
