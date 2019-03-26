@@ -96,3 +96,4 @@ Route::get('productos/{id}/cupones',function($id){
     })
     ->toJson();
 })->name("api.products.coupons");
+

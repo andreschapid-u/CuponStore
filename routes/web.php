@@ -68,3 +68,7 @@ Route::group(['prefix' => 'productos/{id}/cupones'], function ($id) {
     Route::get('crear','CouponController@create')->name('coupons.create');
     Route::post('crear','CouponController@store')->name('coupons.store');
 });
+
+Route::get('/get/sucursales/{company}', function(\App\Company $company){
+    return view("products.partials.branchesul")->with("branches",$company->branches);
+});

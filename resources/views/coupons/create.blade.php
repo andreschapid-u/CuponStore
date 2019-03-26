@@ -47,15 +47,9 @@
                             <div class="form-gruop col-md-8 my-sm-2">
                                 <div class="text-center">
                                     <label for="textDescrip" id="l_Descripcion">Sucursales</label>
-                                    <div>
-                                        <ul>
-                                            <li>12</li>
-                                            <li>3</li>
-                                            <li>4</li>
-                                            <li>5</li>
-                                            <li>6</li>
-                                        </ul>
-                                    </div>
+                                </div>
+                                <div id="sucursales" class="row bg-warning px-sm-3">
+
                                 </div>
                             </div>
                         </div>

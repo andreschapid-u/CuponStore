@@ -2,40 +2,20 @@
     $(document).ready(function(){
     document.getElementById('Empresa').addEventListener('change',function(){
         console.log(this.value);
-        alert(this.value);
-        // var ciudades = document.getElementById('ciudad');
-        // ciudades.innerHTML = "";
+        if(this.value != ""){
+            fetch(
+                "/get/sucursales/"+this.value,
+                { method: 'get',})
+            .then(function(response){
+                return response.text();
+            }).then(function(json){
+                console.log(json);
+                document.getElementById("sucursales").innerHTML = json;
+            }).catch(function(error){
 
-        // var noSelected = document.createElement('option');
-        // noSelected.value = "";
-        // noSelected.innerHTML = "Seleccione una ciudad";
-        // noSelected.seleted = true;
-        // ciudades.appendChild(noSelected);
-        // if(this.value != ""){
-        //     fetch(
-        //         "/api/cities/"+this.value,
-        //         { method: 'get',})
-        //     .then(function(response){
-        //         return response.json();
-        //     }).then(function(json){
-
-
-
-        //         for (const city in json) {
-        //             if (json.hasOwnProperty(city)) {
-        //                 const element = json[city];
-        //                 console.log(element["id"]);
-        //                 var opt = document.createElement('option');
-        //                 opt.value = element["id"];
-        //                 opt.innerHTML = element["name"];
-        //                 ciudades.appendChild(opt);
-        //             }
-        //         }
-        //     }).catch(function(error){
-
-        //         console.log(error);
-        //     });
-        // }
+                console.log(error);
+            });
+        }
     });
 });
 
