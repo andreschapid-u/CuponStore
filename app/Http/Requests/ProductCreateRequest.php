@@ -28,7 +28,7 @@ class ProductCreateRequest extends FormRequest
             'descripcion' => 'string',
             'marca' => 'required|exists:brands,id',
             'categoria' => 'required|exists:categories,id',
-            'imagen' => 'required|image',
+            'imagen' => 'required|image|max:2048|dimensions:ratio=1/1',
         ];
     }
 }

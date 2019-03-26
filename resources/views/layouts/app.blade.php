@@ -43,7 +43,7 @@
 
 </head>
 <header>
-    <nav class="navbar navbar-light navbar-laravel navbar-expand-md fixed-top text-uppercase shadow">
+    <nav class="navbar navbar-laravel navbar-expand-md fixed-top text-uppercase shadow">
         {{--
         <nav class="navbar navbar-dark navbar-expand-md fixed-top text-uppercase "> --}}
 
@@ -54,26 +54,27 @@
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
+                        {{-- <span class="navbar-toggler-icon"></span> --}}
+                        <i class="fa fa-bars" aria-hidden="true"></i>
                     </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto small">
                     <li class="nav-item ">
-                        <a class="nav-link btn-outline-info" href="{{ route('categorias') }}">Categorías</a>
+                        <a class="nav-link " href="{{ route('categorias') }}">Categorías</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link btn-outline-info {{active('marcas')}}" href="{{ route('brands') }}">Marcas</a>
+                        <a class="nav-link  {{active('marcas')}}" href="{{ route('brands') }}">Marcas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-outline-info {{active('personas')}}" href="{{ route('persons') }}">Usuarios</a>
+                        <a class="nav-link  {{active('personas')}}" href="{{ route('persons') }}">Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-outline-info {{active('empresas')}}" href="{{ route('companies.index') }}">Empresas</a>
+                        <a class="nav-link  {{active('empresas')}}" href="{{ route('companies.index') }}">Empresas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-outline-info {{active('productos')}}" href="{{ route('products.index') }}">Productos</a>
+                        <a class="nav-link  {{active('productos')}}" href="{{ route('products.index') }}">Productos</a>
                     </li>
                 </ul>
 

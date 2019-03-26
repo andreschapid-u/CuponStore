@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow">
-                <div class="card-header bg-primary text-white" id="cardCupon">Crear Cupon {{-- <img src="./img/favicon-32x32.png" class="img-responsive img-rounded" style="max-width:20%">                    --}}
+                <div class="card-header bg-primary text-white" id="cardCupon">Crear Cupon
                 </div>
 
                 <div class="card-body">

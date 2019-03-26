@@ -13,7 +13,7 @@ use Illuminate\Http\Resources\Json\Resource;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->with("coupons", \App\Coupon::orderBy("expiration", "ASC")->get());
 });
 Route::get('/prueba', function () {
     return view('prueba');
