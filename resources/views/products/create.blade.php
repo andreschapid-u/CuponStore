@@ -73,8 +73,8 @@
                         <div class="form-group row">
                             <div class="mx-auto">
                                 <button type="submit" class="btn btn-primary">
-                                {{ __('Register') }}
-                            </button>
+									{{ __('Register') }}
+								</button>
                             </div>
                         </div>
                     </form>

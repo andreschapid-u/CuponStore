@@ -97,3 +97,6 @@ Route::group(['prefix' => 'carrito'], function () {
     Route::post('eliminar/{coupon}', 'CartController@destroy')->name('cart.destroy');
 });
 
+Route::get('detalle/{coupon}', function(\App\Coupon $coupon){
+return view("coupons/detalle")->with("cupon", $coupon);
+})->name("detalle");

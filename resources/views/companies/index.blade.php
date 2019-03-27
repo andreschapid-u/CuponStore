@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h3 class="title">Usuarios</h3>
+    <h3 class="title">Empresas</h3>
     <a name="" id="" class="btn btn-primary" href="{{route('companies.create')}}" role="button">Registrar Empresa</a>
 
     <div class="table-responsive">
