@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h3>CATEGORÍAS</h3>
+    <h3>Categorías</h3>
 
     <div class="row">
         <div class="col-sm-12 col-md-4 col-lg-4">
