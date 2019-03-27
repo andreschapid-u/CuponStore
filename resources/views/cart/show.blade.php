@@ -85,20 +85,20 @@
     @endguest
     <form action="{{route('cart.comprar')}}" method="post">
         <div class="row">
+            @csrf
             @guest
             <div class="col-6">
-                @csrf
                 <div class="form-group">
                     <label for="nombre">Nombres</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombres..." aria-describedby="helpId">
+                    <input type="text" required name="nombre" id="nombre" class="form-control" placeholder="Nombres..." aria-describedby="helpId">
                 </div>
                 <div class="form-group">
                     <label for="apellidos">Apellidos</label>
-                    <input type="text" name="apellidos" id="apellidos" class="form-control" placeholder="Apellidos..." aria-describedby="helpId">
+                    <input type="text" required name="apellidos" id="apellidos" class="form-control" placeholder="Apellidos..." aria-describedby="helpId">
                 </div>
                 <div class="form-group">
                     <label for="correo">Correo</label>
-                    <input type="text" name="correo" id="correo" class="form-control" placeholder="Correo..." aria-describedby="helpId">
+                    <input type="email" required name="correo" id="correo" class="form-control" placeholder="Correo..." aria-describedby="helpId">
                 </div>
 
             </div>

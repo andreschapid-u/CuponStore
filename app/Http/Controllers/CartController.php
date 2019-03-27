@@ -6,6 +6,11 @@ use App\Cart;
 use Illuminate\Http\Request;
 use App\Coupon;
 use App\PaymentMethod;
+use App\Purchase;
+use Illuminate\Support\Str;
+use App\Person;
+use App\Role;
+
 
 class CartController extends Controller
 {
@@ -182,12 +187,47 @@ class CartController extends Controller
     }
     public function comprar(Request $request)
     {
-        dd($request);
+        $cart = session()->get('cart');
+        // dd($cart);
         if (auth()->user()) {
-
+            $coupons = auth()->user()->person->cuponsCart;
+            foreach($coupons as $c){
+                $compra = new Purchase();
+                $compra->coupon_code = Str::random(5);
+                $compra->person_id = auth()->user()->person->id;
+                $compra->coupon_id = $c->id;
+                $compra->state = "Pendiente";
+                $compra->payment_method_id = $request["FormaPago"];
+                $compra->save();
+                auth()->user()->person->cuponsCart()->detach($c);
+            }
         }else{
+            $re = Role::where("name", "Registrado")->first();
+            $person = new Person();
+            $person->first_name = $request['nombre'];
+            $person->last_name = $request['apellidos'];
+            $person->shipping_email = $request['correo'];
+            $person->role_id = $re->id;
+            $person->save();
+            $cart = session()->get('cart');
+
+            foreach ($cart as $idCupon => $datos) {
+                $compra = new Purchase();
+                $compra->coupon_code = Str::random(5);
+                $compra->person_id = $person->id;
+                $compra->coupon_id = $idCupon;
+                $compra->state = "Pendiente";
+                $compra->payment_method_id = $request["FormaPago"];
+                $compra->save();
+
+            }
 
         }
+        session()->forget('cart');
+
+
+        return redirect()->route('welcome')
+        ->with("success", "Compra Realizada!");
     }
 
 }

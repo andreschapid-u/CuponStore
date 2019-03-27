@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome')->with("coupons", \App\Coupon::orderBy("expiration", "ASC")->get());
-});
+})->name("welcome");
 Route::get('/prueba', function () {
     return view('prueba');
 });
@@ -31,7 +31,7 @@ Route::post('/empresa', function (Request $r) {
         if($venta->state!="Reclamado")
         {
             return view('empresa')->with("coupon", $venta->coupon);
-        }                
+        }
     }
     session()->flash("error", "No esta disponible");
     return view('empresa');
@@ -42,7 +42,7 @@ Route::post('/redimir', function (Request $r) {
     $venta = \App\Purchase::where("coupon_id",$r["coupon_id"])->first();
     if($venta){
         $venta->state="Reclamado";
-        $venta->update();       
+        $venta->update();
         return view('empresa')->with("coupon", $venta->coupon)->with("estado", $venta->state);
     }
     session()->flash("error", "No esta disponible");
