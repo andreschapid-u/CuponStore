@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cart;
 use Illuminate\Http\Request;
 use App\Coupon;
+use App\PaymentMethod;
 
 class CartController extends Controller
 {
@@ -39,13 +40,16 @@ class CartController extends Controller
      */
     public function store(Coupon $coupon)
     {
-
         // dd($coupon);
+        // dd(auth()->user()->person->cuponsCart->attach($coupon));
+
         $cart = session()->get('cart');
 
-        // if cart is empty then this the first product
+        // Si el carro esta vacio lo agregamos
         if (!$cart) {
-
+            if (auth()->user()) {
+                auth()->user()->person->cuponsCart()->attach($coupon);
+            }
             $cart = [
                 $coupon->id => [
                     "name" => $coupon->product->name,
@@ -62,11 +66,19 @@ class CartController extends Controller
 
         // if cart not empty then check if this product exist then increment quantity
         if (isset($cart[$coupon->id])) {
-
+            if (auth()->user()) {
+                // dd(auth()->user()->person->cuponsCart->where("id", $coupon->id)->first());
+                $coupons = auth()->user()->person->cuponsCart;
+                $myCoupon = $coupons->where("id", $coupon->id)->first();
+                if ($myCoupon) {
+                    $myCoupon->pivot->amount++;
+                    $myCoupon->pivot->update();
+                    // dd($myCoupon);
+                }
+                // dd(->pivot->amount);
+            }
             $cart[$coupon->id]['quantity']++;
-
             session()->put('cart', $cart);
-
             return redirect()->back()->with('success', 'Cupon agregado al carrito satisfactoriamente!');
         }
 
@@ -77,6 +89,9 @@ class CartController extends Controller
             "price" => $coupon->end_price,
             "photo" => $coupon->product->image
         ];
+        if (auth()->user()) {
+            auth()->user()->person->cuponsCart()->attach($coupon);
+        }
 
         session()->put('cart', $cart);
 
@@ -113,8 +128,7 @@ class CartController extends Controller
      */
     public function update(Request $request, Coupon $coupon)
     {
-        if($request->id and $request->quantity)
-        {
+        if ($request->id and $request->quantity) {
             $cart = session()->get('cart');
 
             $cart[$request->id]["quantity"] = $request->quantity;
@@ -137,14 +151,43 @@ class CartController extends Controller
 
         if (isset($cart[$coupon->id])) {
 
+            if (auth()->user()) {
+                // dd(auth()->user()->person->cuponsCart->where("id", $coupon->id)->first());
+                $coupons = auth()->user()->person->cuponsCart;
+                $myCoupon = $coupons->where("id", $coupon->id)->first();
+                if ($myCoupon) {
+                    auth()->user()->person->cuponsCart()->detach($myCoupon);
+                }
+                // dd(->pivot->amount);
+            }
             unset($cart[$coupon->id]);
 
             session()->put('cart', $cart);
             session()->flash('success', 'Cupon eliminado correctamente!');
-        }else{
+        } else {
             session()->flash('error', 'EL cupon no se encuntra en el carrito!');
-
         }
         return redirect()->back();
     }
+
+    public function procesar()
+    {
+        if(session()->get('cart') && count(session()->get('cart'))){
+            return view("cart.show")
+            ->with("compra",true)
+            ->with("metodos_pago", PaymentMethod::all());
+        }
+        session()->flash('info', 'Carro vacio!');
+        return redirect()->back();
+    }
+    public function comprar(Request $request)
+    {
+        dd($request);
+        if (auth()->user()) {
+
+        }else{
+
+        }
+    }
+
 }

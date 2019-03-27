@@ -84,8 +84,8 @@ Route::get('/get/sucursales/{company}', function (\App\Company $company) {
 });
 
 
-Route::post("eje", function () {
-    return back();
+Route::get("eje", function () {
+    return redirect()->route("cart.procesar");
 })->middleware("auth");
 
 Route::group(['prefix' => 'carrito'], function () {
@@ -95,5 +95,7 @@ Route::group(['prefix' => 'carrito'], function () {
     Route::post('agregar/{coupon}', 'CartController@store')->name('cart.store');
     Route::post('actualizar/{coupon}', 'CartController@update')->name('cart.update');
     Route::post('eliminar/{coupon}', 'CartController@destroy')->name('cart.destroy');
+    Route::get('procesar', 'CartController@procesar')->name('cart.procesar');
+    Route::post('procesar', 'CartController@comprar')->name('cart.comprar');
 });
 
