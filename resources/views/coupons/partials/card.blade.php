@@ -1,4 +1,4 @@
-<div class="col-sm-6 col-md-4 col-lg-3 p-2">
+<div class="col-sm-6 col-md-8 col-lg-3 p-2">
     <div class="card shadow">
         <img class="card-img-top img-fluid" src="{{$coupon->product->image}}" alt="">
         <button type="button" class="btn btn-danger btn-circle float-right align-self-end position-absolute"><strong>{{$coupon->end_discount}}</strong></button>
