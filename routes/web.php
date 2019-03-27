@@ -69,16 +69,31 @@ Route::group(['prefix' => 'personas'], function () {
 Route::resource('empresas', 'CompanyController', ['names' => 'companies'])->except(['update', 'destroy', 'edit']);
 
 Route::group(['prefix' => 'empresas/{id}/sucursales'], function ($id) {
-    Route::get('crear','CompanyController@create_branch')->name('companies.create_branch');
-    Route::post('crear','CompanyController@store_branch')->name('companies.store_branch');
+    Route::get('crear', 'CompanyController@create_branch')->name('companies.create_branch');
+    Route::post('crear', 'CompanyController@store_branch')->name('companies.store_branch');
 });
 Route::resource('productos', 'ProductController', ['names' => 'products'])->except(['update', 'destroy', 'edit']);
 
 Route::group(['prefix' => 'productos/{id}/cupones'], function ($id) {
-    Route::get('crear','CouponController@create')->name('coupons.create');
-    Route::post('crear','CouponController@store')->name('coupons.store');
+    Route::get('crear', 'CouponController@create')->name('coupons.create');
+    Route::post('crear', 'CouponController@store')->name('coupons.store');
 });
 
-Route::get('/get/sucursales/{company}', function(\App\Company $company){
-    return view("products.partials.branchesul")->with("branches",$company->branches);
+Route::get('/get/sucursales/{company}', function (\App\Company $company) {
+    return view("products.partials.branchesul")->with("branches", $company->branches);
 });
+
+
+Route::post("eje", function () {
+    return back();
+})->middleware("auth");
+
+Route::group(['prefix' => 'carrito'], function () {
+
+    // Route::resource('cart', 'CartController')->only(["store","update","show", "destroy","index"]);
+    Route::get('/', 'CartController@show')->name('cart.show');
+    Route::post('agregar/{coupon}', 'CartController@store')->name('cart.store');
+    Route::post('actualizar/{coupon}', 'CartController@update')->name('cart.update');
+    Route::post('eliminar/{coupon}', 'CartController@destroy')->name('cart.destroy');
+});
+

@@ -27,7 +27,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}@yield('title')</title>
 
 
     <!-- Fonts -->
@@ -36,7 +36,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> {{--
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> @yield('styles') {{--
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         --}} {{-- crossorigin="anonymous"> --}}
 
@@ -52,8 +52,8 @@
                         {{-- {{ config('app.name', 'Laravel') }} --}}
                     </a>
 
-            <button class="navbar-toggler shadow" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <button class="navbar-toggler shadow text-primary border-primary" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         {{-- <span class="navbar-toggler-icon"></span> --}}
                         <i class="fa fa-bars" aria-hidden="true"></i>
                     </button>
@@ -86,6 +86,9 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
+                    <li class="nav-item">
+                        <a class="nav-link rounded rounded-circle" href="{{ route('cart.show') }}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                    </li>
                     @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

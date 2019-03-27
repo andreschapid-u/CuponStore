@@ -30,17 +30,22 @@ class Person extends Authenticatable
 
     public function companies()
     {
-        return $this->hasMany(Company::class, 'product_id', 'id');
+        return $this->hasMany(Company::class, 'person_id', 'id');
     }
 
     public function branches()
     {
-        return $this->hasMany(Branch::class, 'product_id', 'id');
+        return $this->hasMany(Branch::class, 'person_id', 'id');
     }
 
     public function purchases()
     {
-        return $this->hasMany(Purchase::class, 'product_id', 'id');
+        return $this->hasMany(Purchase::class, 'person_id', 'id');
+    }
+
+    public function cuponsCart()
+    {
+        return $this->belongsToMany(Coupon::class,"carts")->withPivot(["amount"]);
     }
 
     public function getFullName()

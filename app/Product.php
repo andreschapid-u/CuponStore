@@ -22,7 +22,7 @@ class Product extends Model
 
     public function branches()
     {
-        return $this->belongsToMany(Branch::class)->withTimestamps();
+        return $this->belongsToMany(Branch::class, "product_id", "id");
         // ->using(BranchProduct::class);
     }
 

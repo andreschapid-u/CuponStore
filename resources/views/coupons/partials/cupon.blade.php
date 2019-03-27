@@ -18,7 +18,10 @@
                 </div>
                 <div class="col-12">
                         <button type="button" class="mx-auto btn btn-sm btn-warning"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                        <button type="button" class="mx-auto btn btn-sm btn-info float-right"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                        <form class="mx-auto float-right" action="{{route('cart.store',$coupon->id)}}" method="post">
+                                <button type="submit" class=" btn btn-sm btn-info "><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                                @csrf
+                        </form>
                 </div>
             </div>
         </div>
