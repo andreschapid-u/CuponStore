@@ -49,7 +49,7 @@
 
             <a class="navbar-brand " href="{{ url('/') }}">
                         <img src="{{ asset('img/favicon-32x32.png') }}" class="img-fluid logo" alt="CuponStore">
-                        {{-- {{ config('app.name', 'Laravel') }} --}}
+                        {{ config('app.name', 'Laravel') }}
                     </a>
 
             <button class="navbar-toggler shadow text-primary border-primary" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -61,14 +61,12 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto small">
+					@if (Auth::check() && Auth::user()->isAdmin() )
                     <li class="nav-item ">
                         <a class="nav-link " href="{{ route('categorias') }}">Categorías</a>
                     </li>
-                    <li class="nav-item ">
+					<li class="nav-item ">
                         <a class="nav-link  {{active('marcas')}}" href="{{ route('brands') }}">Marcas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  {{active('personas')}}" href="{{ route('persons') }}">Usuarios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link  {{active('empresas')}}" href="{{ route('companies.index') }}">Empresas</a>
@@ -76,6 +74,37 @@
                     <li class="nav-item">
                         <a class="nav-link  {{active('productos')}}" href="{{ route('products.index') }}">Productos</a>
                     </li>
+					<li class="nav-item">
+                        <a class="nav-link  {{active('personas')}}" href="{{ route('persons') }}">Usuarios</a>
+                    </li>
+					@endif
+					@if (Auth::check() && Auth::user()->isPublicista())
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{{ route('categorias') }}">Categorías</a>
+                    </li>
+					<li class="nav-item ">
+                        <a class="nav-link  {{active('marcas')}}" href="{{ route('brands') }}">Marcas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  {{active('empresas')}}" href="{{ route('companies.index') }}">Empresas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  {{active('productos')}}" href="{{ route('products.index') }}">Productos</a>
+                    </li>
+					@endif
+					@if (Auth::check() && Auth::user()->isEmpresario())
+					<li class="nav-item">
+                        <a class="nav-link  {{active('productos')}}" href="{{route('persons.create')}}">Registrar Cajero</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link  {{active('productos')}}" href="/empresa">Redimir</a>
+                    </li>
+					@endif
+					@if (Auth::check() && Auth::user()->isChecker())
+					<li class="nav-item">
+                        <a class="nav-link  {{active('productos')}}" href="/empresa">Redimir</a>
+                    </li>
+					@endif
                 </ul>
 
                 {{--

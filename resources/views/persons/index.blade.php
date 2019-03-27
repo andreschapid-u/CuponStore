@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h1 class="title">Listado de Usuarios</h1>
-
+    <h3 class="title">Listado de Usuarios</h3>
     <a name="" id="" class="btn btn-primary" href="{{route('persons.create')}}" role="button">Registrar Usuario</a>
     <hr>
     <div class="table-responsive">

@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-12 mx-auto">
-            <h3>MARCAS</h3>
+            <h3>Marcas</h3>
         </div>
 
         <div class="col-sm-12 col-md-4">

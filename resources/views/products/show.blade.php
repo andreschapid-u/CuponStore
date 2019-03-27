@@ -29,7 +29,7 @@
                     <div class="form-group row">
                         <label for="logo" class="col-md-4 col-form-label text-md-right">Imagen</label>
                         <div class="col-md-6">
-                            <img class="img-thumbnail card-img-top" src="{{asset($product->image)}}" style="max-width: 300px;">
+                            <img class="img-fluid card-img-top" src="{{asset($product->image)}}" style="max-width: 300px;">
                         </div>
                     </div>
 
