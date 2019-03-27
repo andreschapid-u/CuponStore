@@ -28,11 +28,26 @@ Route::post('/empresa', function (Request $r) {
     // dd($r["codigoCoupon"]);
     $venta = \App\Purchase::where("coupon_code",$r["codigoCoupon"])->first();
     if($venta){
-        return view('empresa')->with("coupon", $venta->coupon);
+        if($venta->state!="Reclamado")
+        {
+            return view('empresa')->with("coupon", $venta->coupon);
+        }                
     }
     session()->flash("error", "No esta disponible");
     return view('empresa');
 })->name("empresa");
+
+Route::post('/redimir', function (Request $r) {
+    // dd($r["coupon_id"]);
+    $venta = \App\Purchase::where("coupon_id",$r["coupon_id"])->first();
+    if($venta){
+        $venta->state="Reclamado";
+        $venta->update();       
+        return view('empresa')->with("coupon", $venta->coupon)->with("estado", $venta->state);
+    }
+    session()->flash("error", "No esta disponible");
+    return view('empresa');
+})->name("redimir");
 
 Route::get('/administrador', function () {
     return view('administrador');
