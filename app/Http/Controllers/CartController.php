@@ -183,7 +183,7 @@ class CartController extends Controller
             ->with("metodos_pago", PaymentMethod::all());
         }
         session()->flash('info', 'Carro vacio!');
-        return redirect()->back();
+        return view("cart.show");
     }
     public function comprar(Request $request)
     {
